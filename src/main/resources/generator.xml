@@ -11,9 +11,9 @@
     <entry key="outRoot">generator-output</entry>
     
     <!-- 定义包名，模块名 -->
-    <entry key="basepackage">com.api</entry>  
-    <entry key="subpackage">v1</entry>
-    <entry key="module">tbdemo</entry>
+    <entry key="basepackage">com</entry>  
+    <entry key="subpackage">epo</entry>
+    <entry key="module">erp2sap</entry>
     
     <!-- 需要移除的表名前缀,使用逗号进行分隔多个前缀,示例值: t_,v_ -->  
     <entry key="tableRemovePrefixes"></entry>  

@@ -7,7 +7,8 @@ public class Generator
 	public static void main(String[] args) throws Exception
 	{
 		// 模板地址
-		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_v1";
+		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_v0";
+//		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_v1";
 //		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_v2";
 		
 		GeneratorFacade g = new GeneratorFacade();
