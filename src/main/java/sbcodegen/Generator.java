@@ -7,12 +7,14 @@ public class Generator
 	public static void main(String[] args) throws Exception
 	{
 		// 模板地址
-		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_v0";
+//		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_v0";
 //		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_v1";
 //		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_v2";
+		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_v2.0";
 		
 		GeneratorFacade g = new GeneratorFacade();
 		g.getGenerator().addTemplateRootDir(templatePath);
+		
 		// 通过数据库表生成文件
 		g.generateByTable("TB_DEMO");
 

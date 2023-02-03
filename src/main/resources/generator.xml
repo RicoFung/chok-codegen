@@ -8,23 +8,31 @@
     </comment>  
       
     <!-- 代码生成目录 -->
-    <entry key="outRoot">generator-output</entry>
+    <entry key="outRoot">target</entry>
     
     <!-- 定义包名，模块名 -->
     <entry key="basepackage">com</entry>  
-    <entry key="subpackage">epo</entry>
-    <entry key="module">erp2sap</entry>
+    <entry key="subpackage">domain</entry>
+    <entry key="module">tbdemo</entry>
+    
+    <!-- 标签 -->
+    <entry key="apiGroup">v3</entry>
+    <entry key="apiGroupPath">/api/v3</entry>
     
     <!-- 需要移除的表名前缀,使用逗号进行分隔多个前缀,示例值: t_,v_ -->  
     <entry key="tableRemovePrefixes"></entry>  
 
 	<!-- jdbc账密 -->
-    <entry key="jdbc_username">epoerp_u</entry>  
-    <entry key="jdbc_password">epoerp_u</entry>  
+    <entry key="jdbc_username">epodrp_t</entry>  
+    <entry key="jdbc_password">epodrp_t</entry>  
+    <!-- 
+    <entry key="jdbc_username">e3</entry>  
+    <entry key="jdbc_password">E3Uatuser345</entry>  
+     -->
 
     <!-- oracle需要指定jdbc.schema,其它数据库忽略此项配置  -->  
-    <entry key="jdbc_schema">EPOERP_U</entry>  
-    <entry key="jdbc_catalog">EPOERP_U</entry>  
+    <entry key="jdbc_schema">EPODRP_T</entry>  
+    <entry key="jdbc_catalog">EPODRP_T</entry>  
 
     <!-- 数据库类型映射  -->  
     <entry key="java_typemapping.java.sql.Timestamp">java.lang.String</entry>  
@@ -38,6 +46,7 @@
   
    
     <!-- Oracle  jdbc:oracle:oci:@tnsname_devdb 
+    <entry key="jdbc_url">jdbc:oracle:thin:@10.12.204.39:1521/ZTDEV</entry>  
     --> 
     <entry key="jdbc_url">jdbc:oracle:thin:@ECNGZVWERP301U.mo-co.org:1521:orcl</entry>  
     <entry key="jdbc_driver">oracle.jdbc.driver.OracleDriver</entry>  
