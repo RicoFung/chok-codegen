@@ -118,6 +118,9 @@
 				ORDER BY <foreach collection="dynamicOrder" index="index" item="item" separator=",">TT.<include refid="orderParse" /> ${r'${item.sortOrder}'}</foreach>  
 			</when>
 			<otherwise>
+				<#if table.pkCount gte 1>
+				ORDER BY <#list table.compositeIdColumns as column>TT.${column.sqlName}<#if column_has_next>, </#if> </#list>
+				</#if> 
 			</otherwise>
 		</choose>
 	</sql>

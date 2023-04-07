@@ -8,9 +8,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-import com.domain.tbdemo.model.entity.${className}Entity;
-import com.domain.tbdemo.model.query.${className}GetListQuery;
-import com.domain.tbdemo.model.query.${className}GetOneQuery;
+import ${basepackage}.${subpkg}.${module}.model.entity.${className}Entity;
+import ${basepackage}.${subpkg}.${module}.model.query.${className}GetListQuery;
+import ${basepackage}.${subpkg}.${module}.model.query.${className}GetOneQuery;
 
 @Mapper
 public interface ParamMapper
