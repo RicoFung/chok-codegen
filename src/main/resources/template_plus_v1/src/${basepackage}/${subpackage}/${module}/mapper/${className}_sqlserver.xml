@@ -27,17 +27,17 @@
 	
     <!-- 自动生成id策略 -->
     <insert id="create" parameterType="${basepackage}.${subpkg}.${module}.model.entity.${className}Entity" useGeneratedKeys="true" keyProperty="<#if table.pkCount gte 1><#list table.compositeIdColumns as column><@mapperEl column.columnNameFirstLower/></#list></#if>"> 
-       	INSERT INTO ${table.sqlName} 
-       	(<#list table.columns as column> ${column.sqlName}<#if column_has_next>,</#if></#list>) 
+       	INSERT INTO ${table.sqlName?upper_case} 
+       	(<#list table.columns as column> ${column.sqlName?upper_case}<#if column_has_next>,</#if></#list>) 
        	VALUES
        	(<#list table.columns as column> <@mapperEl column.columnNameFirstLower/><#if column_has_next>,</#if></#list>)
     </insert>  
     
     <insert id="createBatch">
-    	INSERT INTO ${table.sqlName}
+    	INSERT INTO ${table.sqlName?upper_case}
     	(
         <#list table.notPkColumns as column>
-        ${column.sqlName}<#if column_has_next>,</#if>
+        ${column.sqlName?upper_case}<#if column_has_next>,</#if>
         </#list>
         )
 	    SELECT T.*
@@ -46,7 +46,7 @@
 	    <foreach collection ="list" item="item" index="index" separator="UNION ALL">
 	    SELECT
         <#list table.notPkColumns as column>
-		<@mapperItemEl column.columnNameFirstLower/> AS ${column.sqlName}<#if column_has_next>,</#if>
+		<@mapperItemEl column.columnNameFirstLower/> AS ${column.sqlName?upper_case}<#if column_has_next>,</#if>
        	</#list>
 	    FROM DUAL
 	    </foreach>
@@ -54,37 +54,37 @@
     </insert>
 	
 	<delete id="remove">
-		DELETE FROM ${table.sqlName} 
+		DELETE FROM ${table.sqlName?upper_case} 
 		<#if table.pkCount gte 1>
 		 WHERE 
-		<#list table.compositeIdColumns as column>${column.sqlName} IN
+		<#list table.compositeIdColumns as column>${column.sqlName?upper_case} IN
 		<foreach collection="array" item="${column.columnNameLower}" index="index" open="(" close=")" separator=","><@mapperEl column.columnNameLower/></foreach><#if column_has_next> AND </#if>
 		</#list>
 		</#if>
 	</delete>
 	
 	<update id="modify" parameterType="${basepackage}.${subpkg}.${module}.model.entity.${className}Entity">
-		UPDATE ${table.sqlName} T
+		UPDATE ${table.sqlName?upper_case} T
 		<set>
         <#list table.notPkColumns as column>
-        <if test="@chok.devwork.Ognl@isNotNull(${column.columnNameFirstLower})"> T.${column.sqlName} = <@mapperEl column.columnNameFirstLower/><#if column_has_next>,</#if></if>
+        <if test="@chok2.devwork.dao.Ognl@isNotNull(${column.columnNameFirstLower})"> T.${column.sqlName?upper_case} = <@mapperEl column.columnNameFirstLower/><#if column_has_next>,</#if></if>
         </#list>
         </set>
 	     <#if table.pkCount gte 1>
-         WHERE <#list table.compositeIdColumns as column>T.${column.sqlName} = <@mapperEl column.columnNameLower/> <#if column_has_next> and </#if> </#list>
+         WHERE <#list table.compositeIdColumns as column>T.${column.sqlName?upper_case} = <@mapperEl column.columnNameLower/> <#if column_has_next> and </#if> </#list>
          </#if>        
 	</update>
   	
   	<update id="modifyBatch">
   		<foreach collection="list" index="index" item="item" open="begin" close=";end;" separator=";">
-	        UPDATE ${table.sqlName} T
+	        UPDATE ${table.sqlName?upper_case} T
 	        <set>
 		       <#list table.notPkColumns as column>
-		       <if test="@chok.devwork.Ognl@isNotEmpty(item.${column.columnNameFirstLower})"> T.${column.sqlName} = <@mapperItemEl column.columnNameFirstLower/>,</if>
+		       <if test="@chok2.devwork.dao.Ognl@isNotEmpty(item.${column.columnNameFirstLower})"> T.${column.sqlName?upper_case} = <@mapperItemEl column.columnNameFirstLower/>,</if>
 		       </#list>
 	        </set>
 			<#if table.pkCount gte 1>
-			WHERE <#list table.compositeIdColumns as column>T.${column.sqlName} = <@mapperItemEl column.columnNameLower/> <#if column_has_next> and </#if> </#list>
+			WHERE <#list table.compositeIdColumns as column>T.${column.sqlName?upper_case} = <@mapperItemEl column.columnNameLower/> <#if column_has_next> and </#if> </#list>
 	   		</#if>  
     	</foreach>
   	</update>
@@ -97,16 +97,16 @@
   	
 	<sql id="dynamicColumns">
 		<choose>
-			<when test="@chok.devwork.Ognl@isNotEmpty(dynamicColumns) and @chok.devwork.Ognl@isNotNull(dynamicColumns)">
+			<when test="@chok2.devwork.dao.Ognl@isNotEmpty(dynamicColumns) and @chok2.devwork.dao.Ognl@isNotNull(dynamicColumns)">
 			    <foreach collection ="dynamicColumns" item="col" index="index" separator=",">
 					<#list table.columns as column>
-					<if test="col == '${column.columnNameLower}'">T.${column.sqlName}</if>
+					<if test="col == '${column.columnNameLower}'">T.${column.sqlName?upper_case}</if>
 					</#list>
 			    </foreach>
 			</when>
 			<otherwise>
 				<#list table.columns as column>
-				T.${column.sqlName}<#if column_has_next>,</#if> 
+				T.${column.sqlName?upper_case}<#if column_has_next>,</#if> 
 				</#list>
 			</otherwise>
 		</choose>
@@ -114,19 +114,19 @@
 	
 	<sql id="dynamicOrder">
 		<choose>
-			<when test="@chok.devwork.Ognl@isNotEmpty(dynamicOrder)">
+			<when test="@chok2.devwork.dao.Ognl@isNotEmpty(dynamicOrder)">
 				ORDER BY <foreach collection="dynamicOrder" index="index" item="item" separator=",">TT.<include refid="orderParse" /> ${r'${item.sortOrder}'}</foreach>  
 			</when>
 			<otherwise>
 				<#if table.pkCount gte 1>
-				ORDER BY <#list table.compositeIdColumns as column>TT.${column.sqlName}<#if column_has_next>, </#if> </#list>
+				ORDER BY <#list table.compositeIdColumns as column>TT.${column.sqlName?upper_case}<#if column_has_next>, </#if> </#list>
 				</#if> 
 			</otherwise>
 		</choose>
 	</sql>
 	<sql id="orderParse">
 		<#list table.columns as column>
-		<if test="item.sortName == '${column.columnNameLower}'">${column.sqlName}</if>
+		<if test="item.sortName == '${column.columnNameLower}'">${column.sqlName?upper_case}</if>
 		</#list>
 	</sql>
 	
@@ -134,14 +134,14 @@
 		<where>
 			<#if table.pkCount gte 1>
 			<#list table.compositeIdColumns as column>
-			<if test="@chok.devwork.Ognl@isNotEmpty(dynamicWhere.${column.columnNameFirstLower}Array)"> 
-				AND T.${column.sqlName} IN
+			<if test="@chok2.devwork.dao.Ognl@isNotEmpty(dynamicWhere.${column.columnNameFirstLower}Array)"> 
+				AND T.${column.sqlName?upper_case} IN
 				<foreach collection="dynamicWhere.${column.columnNameFirstLower}Array" item="${column.columnNameFirstLower}" index="index" open="(" close=")" separator=","><@mapperEl column.columnNameLower/></foreach>
 			</if>
 			</#list>
 			</#if>  				
 	       	<#list table.notPkColumns as column>
-	       	<if test="@chok.devwork.Ognl@isNotEmpty(dynamicWhere.${column.columnNameFirstLower})"> AND T.${column.sqlName} LIKE '%'||<@mapperDynamicWhereEl column.columnNameFirstLower/>||'%'</if>
+	       	<if test="@chok2.devwork.dao.Ognl@isNotEmpty(dynamicWhere.${column.columnNameFirstLower})"> AND T.${column.sqlName?upper_case} LIKE '%'||<@mapperDynamicWhereEl column.columnNameFirstLower/>||'%'</if>
 	       	</#list>
 		</where>
 	</sql>	
@@ -149,14 +149,14 @@
 	<!-- getOne -->
 	<resultMap type="${basepackage}.${subpkg}.${module}.model.data.${className}GetOneData" id="getOneData">
         <#list table.columns as column>
-        <result property="${column.columnNameLower}" column="${column.sqlName}"/>
+        <result property="${column.columnNameLower}" column="${column.sqlName?upper_case}"/>
 		</#list>
 	</resultMap>
 	<select id="getOne" resultMap="getOneData">
 		SELECT <include refid="dynamicColumns"/> 
-		  FROM ${table.sqlName} T 
+		  FROM ${table.sqlName?upper_case} T 
 	     <#if table.pkCount gte 1>
-         WHERE <#list table.compositeIdColumns as column>T.${column.sqlName} = <@mapperEl column.columnNameLower/> <#if column_has_next> and </#if> </#list>
+         WHERE <#list table.compositeIdColumns as column>T.${column.sqlName?upper_case} = <@mapperEl column.columnNameLower/> <#if column_has_next> and </#if> </#list>
          </#if> 
 	</select>
 	
@@ -166,13 +166,13 @@
 	<select id="getList" parameterType="${basepackage}.${subpkg}.${module}.model.query.${className}GetListQuery" resultType="list" resultMap="getListData">
 		<choose>
 			<!-- 翻页 -->
-			<when test="@chok.devwork.Ognl@isNotEmpty(page) and @chok.devwork.Ognl@isNotEmpty(pagesize)">
+			<when test="@chok2.devwork.dao.Ognl@isNotEmpty(page) and @chok2.devwork.dao.Ognl@isNotEmpty(pagesize)">
 				SELECT TOP ${r'${pagesize}'} *
 				  FROM (SELECT ROW_NUMBER() OVER(<include refid="dynamicOrder" />) AS ROWNUMBER, *
 				          FROM 
 				          (
 				          	SELECT <include refid="dynamicColumns"/> 
-				          	  FROM ${table.sqlName} T 
+				          	  FROM ${table.sqlName?upper_case} T 
 				          	<include refid="dynamicWhere" />
 				          ) TT) TEMP_ROW
 				 WHERE ROWNUMBER &gt; (${r'${page}'}-1)*${r'${pagesize}'}
@@ -181,7 +181,7 @@
 			<otherwise>
 				SELECT TT.* FROM 
 				(
-					SELECT <include refid="dynamicColumns"/> FROM ${table.sqlName} T
+					SELECT <include refid="dynamicColumns"/> FROM ${table.sqlName?upper_case} T
 					<include refid="dynamicWhere" />
 				) TT
 				<include refid="dynamicOrder" />
@@ -190,7 +190,7 @@
 	</select>
 	
 	<select id="getCount" resultType="int">
-		SELECT COUNT(1) FROM ${table.sqlName} T
+		SELECT COUNT(1) FROM ${table.sqlName?upper_case} T
 		<include refid="dynamicWhere" />
 	</select>
 </mapper>  

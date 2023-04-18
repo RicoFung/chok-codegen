@@ -31,7 +31,7 @@ import ${basepackage}.${subpkg}.${module}.model.query.${className}GetListQuery;
 import ${basepackage}.${subpkg}.${module}.model.query.${className}GetOneQuery;
 import ${basepackage}.${subpkg}.${module}.service.${className}Service;
 
-import chok.devwork.pojo.ChokDto;
+import chok2.devwork.pojo.ChokDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 

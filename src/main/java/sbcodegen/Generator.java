@@ -17,7 +17,7 @@ public class Generator
 		g.getGenerator().addTemplateRootDir(templatePath);
 		
 		// 通过数据库表生成文件
-		g.generateByTable("TB_TECH_TRANS_POS_SALE_MAIN_0A");
+		g.generateByTable("STOCK_SHOPAPP");
 
 	}
 }

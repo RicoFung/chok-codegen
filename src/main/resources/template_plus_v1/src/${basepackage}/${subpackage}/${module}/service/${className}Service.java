@@ -17,6 +17,8 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
+import com.epo.shopappexpire.service.StockShopappService;
+
 import ${basepackage}.${subpkg}.${module}.dao.${className}Dao;
 import ${basepackage}.${subpkg}.${module}.model.data.${className}GetListData;
 import ${basepackage}.${subpkg}.${module}.model.data.${className}GetOneData;
@@ -24,14 +26,14 @@ import ${basepackage}.${subpkg}.${module}.model.entity.${className}Entity;
 import ${basepackage}.${subpkg}.${module}.model.query.${className}GetListQuery;
 import ${basepackage}.${subpkg}.${module}.model.query.${className}GetOneQuery;
 
-import chok.devwork.pojo.ChokDto;
+import chok2.devwork.pojo.ChokDto;
 
 @CacheConfig(cacheNames = {"CACHE_${className}"})
 @Service(value = "${apiGroup}${className}Service")
 public class ${className}Service
 {
 	@SuppressWarnings("unused")
-	private final Logger log = LoggerFactory.getLogger(getClass());
+	private final static Logger logger = LoggerFactory.getLogger(${className}Service.class);
 	
 	@Autowired
 	private ${className}Dao dao;

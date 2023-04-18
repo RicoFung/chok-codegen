@@ -13,23 +13,30 @@
     <!-- 定义包名，模块名 -->
     <entry key="basepackage">com</entry>  
     <entry key="subpackage">epo</entry>
-    <entry key="module">b007</entry>
+    <entry key="module">stock.shopapp</entry>
 	<!--     
     <entry key="basepackage">com</entry>  
     <entry key="subpackage">domain</entry>
     <entry key="module">tbdemo</entry>
      -->
     
-    <!-- 标签 -->
-    <entry key="apiGroup">v3</entry>
-    <entry key="apiGroupPath">/api/v3</entry>
+    <!-- 标签 
+    <entry key="apiGroup">shopappexpire</entry>
+    <entry key="apiGroupPath">/api/shopappexpire</entry>
+    -->
+    <entry key="apiGroup"></entry>
+    <entry key="apiGroupPath"></entry>
     
     <!-- 需要移除的表名前缀,使用逗号进行分隔多个前缀,示例值: t_,v_ -->  
     <entry key="tableRemovePrefixes"></entry>  
 
 	<!-- jdbc账密 -->
+    <entry key="jdbc_username">e3</entry>  
+    <entry key="jdbc_password">E3Uatuser345</entry>  
+	<!-- 
     <entry key="jdbc_username">SyncPosTest</entry>  
-    <entry key="jdbc_password">111111</entry>  
+    <entry key="jdbc_password">111111</entry> 
+     --> 
 	<!-- 
     <entry key="jdbc_username">epodrp_u</entry>  
     <entry key="jdbc_password">epodrp_u</entry>  
@@ -38,12 +45,10 @@
     <entry key="jdbc_username">epodrp_t</entry>  
     <entry key="jdbc_password">epodrp_t</entry>  
      -->
-    <!-- 
-    <entry key="jdbc_username">e3</entry>  
-    <entry key="jdbc_password">E3Uatuser345</entry>  
-     -->
 
     <!-- oracle需要指定jdbc.schema,其它数据库忽略此项配置  -->  
+    <entry key="jdbc_schema">E3</entry>  
+    <entry key="jdbc_catalog">E3</entry>  
 	<!--     
     <entry key="jdbc_schema">EPODRP_U</entry>  
     <entry key="jdbc_catalog">EPODRP_U</entry>  
@@ -66,6 +71,9 @@
     <entry key="jdbc_url">jdbc:oracle:thin:@ECNGZVWERP301U.mo-co.org:1521:orcl</entry>  
     <entry key="jdbc_driver">oracle.jdbc.driver.OracleDriver</entry>  
     --> 
+    <entry key="jdbc_url">jdbc:oracle:thin:@10.12.204.39:1521/ZTDEV</entry>  
+    <entry key="jdbc_driver">oracle.jdbc.driver.OracleDriver</entry>  
+<!--     <entry key="jdbc_driver">oracle.jdbc.OracleDriver</entry>   -->
     
     <!-- MySql 
     <entry key="jdbc_url">jdbc:mysql://localhost:3306/chok-locks-examples?useUnicode=true</entry>  
@@ -80,9 +88,9 @@
     <!-- SQLServer2000   
     <entry key="jdbc.url">jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=[database]</entry>  
     <entry key="jdbc.driver">com.microsoft.jdbc.sqlserver.SQLServerDriver</entry>  
-    -->  
     <entry key="jdbc_url">jdbc:sqlserver://ECNHQ-V-MDB01P;database=pos_erp_db_epo_test</entry>  
     <entry key="jdbc_driver">com.microsoft.sqlserver.jdbc.SQLServerDriver</entry>  
+    -->  
       
     <!-- SQLServer2005   
     <entry key="jdbc.url">jdbc:sqlserver://192.168.0.98:1433;DatabaseName=[database]</entry>  
