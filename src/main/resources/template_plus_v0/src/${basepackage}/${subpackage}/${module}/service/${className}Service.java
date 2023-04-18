@@ -24,7 +24,7 @@ import ${basepackage}.${subpkg}.${module}.model.entity.${className}Entity;
 import ${basepackage}.${subpkg}.${module}.model.query.${className}GetListQuery;
 import ${basepackage}.${subpkg}.${module}.model.query.${className}GetOneQuery;
 
-import chok.devwork.pojo.ChokDto;
+import chok2.devwork.pojo.ChokDto;
 
 @CacheConfig(cacheNames = {"CACHE_${className}"})
 @Service(value = "${apiGroup}${className}Service")

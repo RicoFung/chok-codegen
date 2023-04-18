@@ -74,7 +74,7 @@
 		UPDATE ${table.sqlName} T
 		<set>
         <#list table.notPkColumns as column>
-        <if test="@chok.devwork.Ognl@isNotNull(${column.columnNameFirstLower})"> T.${column.sqlName} = <@mapperEl column.columnNameFirstLower/><#if column_has_next>,</#if></if>
+        <if test="@chok2.devwork.dao.Ognl@isNotNull(${column.columnNameFirstLower})"> T.${column.sqlName} = <@mapperEl column.columnNameFirstLower/><#if column_has_next>,</#if></if>
         </#list>
         </set>
 	     <#if table.pkCount gte 1>
@@ -87,7 +87,7 @@
 	        UPDATE ${table.sqlName} T
 	        <set>
 		       <#list table.notPkColumns as column>
-		       <if test="@chok.devwork.Ognl@isNotEmpty(item.${column.columnNameFirstLower})"> T.${column.sqlName} = <@mapperItemEl column.columnNameFirstLower/>,</if>
+		       <if test="@chok2.devwork.dao.Ognl@isNotEmpty(item.${column.columnNameFirstLower})"> T.${column.sqlName} = <@mapperItemEl column.columnNameFirstLower/>,</if>
 		       </#list>
 	        </set>
 			<#if table.pkCount gte 1>
@@ -104,7 +104,7 @@
   	
 	<sql id="dynamicColumns">
 		<choose>
-			<when test="@chok.devwork.Ognl@isNotEmpty(dynamicColumns) and @chok.devwork.Ognl@isNotNull(dynamicColumns)">
+			<when test="@chok2.devwork.dao.Ognl@isNotEmpty(dynamicColumns) and @chok2.devwork.dao.Ognl@isNotNull(dynamicColumns)">
 			    <foreach collection ="dynamicColumns" item="col" index="index" separator=",">
 					<#list table.columns as column>
 					<if test="col == '${column.columnNameLower}'">T.${column.sqlName}</if>
@@ -121,7 +121,7 @@
 	
 	<sql id="dynamicOrder">
 		<choose>
-			<when test="@chok.devwork.Ognl@isNotEmpty(dynamicOrder)">
+			<when test="@chok2.devwork.dao.Ognl@isNotEmpty(dynamicOrder)">
 				ORDER BY <foreach collection="dynamicOrder" index="index" item="item" separator=",">TT.<include refid="orderParse" /> ${r'${item.sortOrder}'}</foreach>  
 			</when>
 			<otherwise>
@@ -138,14 +138,14 @@
 		<where>
 			<#if table.pkCount gte 1>
 			<#list table.compositeIdColumns as column>
-			<if test="@chok.devwork.Ognl@isNotEmpty(dynamicWhere.${column.columnNameFirstLower}Array)"> 
+			<if test="@chok2.devwork.dao.Ognl@isNotEmpty(dynamicWhere.${column.columnNameFirstLower}Array)"> 
 				AND T.${column.sqlName} IN
 				<foreach collection="dynamicWhere.${column.columnNameFirstLower}Array" item="${column.columnNameFirstLower}" index="index" open="(" close=")" separator=","><@mapperEl column.columnNameLower/></foreach>
 			</if>
 			</#list>
 			</#if>  				
 	       	<#list table.notPkColumns as column>
-	       	<if test="@chok.devwork.Ognl@isNotEmpty(dynamicWhere.${column.columnNameFirstLower})"> AND T.${column.sqlName} LIKE '%'||<@mapperDynamicWhereEl column.columnNameFirstLower/>||'%'</if>
+	       	<if test="@chok2.devwork.dao.Ognl@isNotEmpty(dynamicWhere.${column.columnNameFirstLower})"> AND T.${column.sqlName} LIKE '%'||<@mapperDynamicWhereEl column.columnNameFirstLower/>||'%'</if>
 	       	</#list>
 		</where>
 	</sql>	
@@ -170,7 +170,7 @@
 	<select id="getList" parameterType="${basepackage}.${subpkg}.${module}.model.query.${className}GetListQuery" resultType="list" resultMap="getListData">
 		<choose>
 			<!-- 翻页 -->
-			<when test="@chok.devwork.Ognl@isNotEmpty(page) and @chok.devwork.Ognl@isNotEmpty(pagesize)">
+			<when test="@chok2.devwork.dao.Ognl@isNotEmpty(page) and @chok2.devwork.dao.Ognl@isNotEmpty(pagesize)">
 				SELECT * FROM (SELECT row_.*, ROWNUM rownum_ FROM(
 					SELECT TT.* FROM 
 					(

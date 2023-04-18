@@ -9,10 +9,10 @@ package ${basepackage}.${subpkg}.${module}.dao;
 import javax.annotation.Resource;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
-import chok.devwork.BaseDaoPlus;
+import chok2.devwork.dao.BaseDao;
 
 @Repository(value = "${apiGroup}${className}Dao")
-public class ${className}Dao extends BaseDaoPlus
+public class ${className}Dao extends BaseDao
 {
 	@Resource//(name = "firstSqlSessionTemplate")
 	private SqlSession sqlSession;
