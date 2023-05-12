@@ -2,15 +2,15 @@
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
 <#assign subpkg = subpackage?replace("/",".")>
-package ${basepackage}.${subpkg}.${module}.model.param;
+package ${basepackage}.${subpkg}.${module}.model.request;
 
 import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(description = "${className}RemoveParam 删除入参")
-public class ${className}RemoveParam implements Serializable
+@Schema(description = "${className}RemoveRequest 删除入参")
+public class ${className}RemoveRequest implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 

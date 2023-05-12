@@ -2,7 +2,7 @@
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
 <#assign subpkg = subpackage?replace("/",".")>
-package ${basepackage}.${subpkg}.${module}.model.param;
+package ${basepackage}.${subpkg}.${module}.model.request;
 
 import java.io.Serializable;
 
@@ -10,8 +10,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(description = "${className}ModifyParam 修改入参")
-public class ${className}ModifyParam implements Serializable
+@Schema(description = "${className}ModifyRequest 修改入参")
+public class ${className}ModifyRequest implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 

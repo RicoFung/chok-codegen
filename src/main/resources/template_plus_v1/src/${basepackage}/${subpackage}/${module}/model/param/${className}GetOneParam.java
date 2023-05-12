@@ -6,21 +6,15 @@ package ${basepackage}.${subpkg}.${module}.model.param;
 
 import java.io.Serializable;
 import java.util.Arrays;
-import javax.validation.constraints.NotNull;
-import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(description = "${className}GetOneParam 详情入参")
 public class ${className}GetOneParam implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
-	@Schema(title = "动态列", example = "[<#list table.columns as column>\"${column.columnNameLower}\"<#if column_has_next>,</#if></#list>]")
 	private java.lang.String[] dynamicColumns;
 
 <#if table.pkCount gte 1>
 <#list table.compositeIdColumns as column>
-	@Schema(title = "主键", example = "", required = true)
-	@NotNull(message = "${column.columnAlias}不能为空！")
 	private String ${column.columnNameLower};
 </#list>
 </#if>

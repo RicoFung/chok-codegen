@@ -4,14 +4,17 @@
 <#assign classNameLowerCase = table.classNameLowerCase>  
 <#assign classNameFirstLower = table.classNameFirstLower>  
 <#assign subpkg = subpackage?replace("/",".")>
-package ${basepackage}.${subpkg}.${module}.model.query;
+package ${basepackage}.${subpkg}.${module}.model.request;
 
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class ${className}GetListQuery implements Serializable
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(description = "${className}GetListRequest 列表入参")
+public class ${className}GetListRequest implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 
@@ -19,14 +22,19 @@ public class ${className}GetListQuery implements Serializable
 	// 1.默认参数
 	// ********************************************************************************************
 
+	@Schema(title = "动态列", example = "[<#list table.columns as column>\"${column.columnNameLower}\"<#if column_has_next>,</#if></#list>]")
 	private java.lang.String[] dynamicColumns;
 	
+	@Schema(title = "动态排序", example = "[<#if table.pkCount gte 1><#list table.compositeIdColumns as column>{\"sortName\":\"${column.columnNameLower}\",\"sortOrder\":\"DESC\"}<#if column_has_next>, </#if></#list></#if>]")
 	private List<Map<String, Object>> dynamicOrder;
 	
+	@Schema(title = "动态过滤")
 	private DynamicWhere dynamicWhere;
 
+	@Schema(title = "页码", example = "1")
 	private int page;
 
+	@Schema(title = "页大小", example = "10")
 	private int pagesize;
 
 	// ********************************************************************************************
@@ -39,6 +47,7 @@ public class ${className}GetListQuery implements Serializable
 		
 <#list table.notPkColumns as column>
 	    // ${column.columnAlias!}       db_column: ${column.sqlName} 
+		@Schema(title = "${column.columnAlias!}", example = "")
 		private ${column.javaType} ${column.columnNameLower};
 </#list>
 		
@@ -152,7 +161,7 @@ public class ${className}GetListQuery implements Serializable
 	@Override
 	public String toString()
 	{
-		return "${className}GetListQuery [dynamicColumns=" + Arrays.toString(dynamicColumns) + ", dynamicOrder="
+		return "${className}GetListRequest [dynamicColumns=" + Arrays.toString(dynamicColumns) + ", dynamicOrder="
 				+ dynamicOrder + ", dynamicWhere=" + dynamicWhere.toString() + ", page=" + page + ", pagesize=" + pagesize + "]";
 	}
 }

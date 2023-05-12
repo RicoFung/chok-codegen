@@ -26,7 +26,7 @@
 	-->
 	
     <!-- 自动生成id策略 -->
-    <insert id="create" parameterType="${basepackage}.${subpkg}.${module}.model.entity.${className}Entity" useGeneratedKeys="true" keyProperty="<#if table.pkCount gte 1><#list table.compositeIdColumns as column><@mapperEl column.columnNameFirstLower/></#list></#if>"> 
+    <insert id="create" parameterType="${basepackage}.${subpkg}.${module}.model.entity.${className}" useGeneratedKeys="true" keyProperty="<#if table.pkCount gte 1><#list table.compositeIdColumns as column><@mapperEl column.columnNameFirstLower/></#list></#if>"> 
        	INSERT INTO ${table.sqlName?upper_case} 
        	(<#list table.columns as column> ${column.sqlName?upper_case}<#if column_has_next>,</#if></#list>) 
        	VALUES
@@ -63,7 +63,7 @@
 		</#if>
 	</delete>
 	
-	<update id="modify" parameterType="${basepackage}.${subpkg}.${module}.model.entity.${className}Entity">
+	<update id="modify" parameterType="${basepackage}.${subpkg}.${module}.model.entity.${className}">
 		UPDATE ${table.sqlName?upper_case} T
 		<set>
         <#list table.notPkColumns as column>
@@ -147,12 +147,12 @@
 	</sql>	
 	
 	<!-- getOne -->
-	<resultMap type="${basepackage}.${subpkg}.${module}.model.data.${className}GetOneData" id="getOneData">
+	<resultMap type="${basepackage}.${subpkg}.${module}.model.result.${className}GetOneResult" id="getOneResult">
         <#list table.columns as column>
         <result property="${column.columnNameLower}" column="${column.sqlName?upper_case}"/>
 		</#list>
 	</resultMap>
-	<select id="getOne" resultMap="getOneData">
+	<select id="getOne" resultMap="getOneResult">
 		SELECT <include refid="dynamicColumns"/> 
 		  FROM ${table.sqlName?upper_case} T 
 	     <#if table.pkCount gte 1>
@@ -161,9 +161,9 @@
 	</select>
 	
 	<!-- getList -->
-	<resultMap type="${basepackage}.${subpkg}.${module}.model.data.${className}GetListData" id="getListData" extends="getOneData">
+	<resultMap type="${basepackage}.${subpkg}.${module}.model.result.${className}GetListResult" id="getListResult" extends="getOneResult">
 	</resultMap>
-	<select id="getList" parameterType="${basepackage}.${subpkg}.${module}.model.query.${className}GetListQuery" resultType="list" resultMap="getListData">
+	<select id="getList" parameterType="${basepackage}.${subpkg}.${module}.model.param.${className}GetListParam" resultType="list" resultMap="getListResult">
 		<choose>
 			<!-- 翻页 -->
 			<when test="@chok2.devwork.dao.Ognl@isNotEmpty(page) and @chok2.devwork.dao.Ognl@isNotEmpty(pagesize)">

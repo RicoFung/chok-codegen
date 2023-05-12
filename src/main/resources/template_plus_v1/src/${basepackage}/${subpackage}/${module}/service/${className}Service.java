@@ -17,14 +17,12 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
-import com.epo.shopappexpire.service.StockShopappService;
-
 import ${basepackage}.${subpkg}.${module}.dao.${className}Dao;
-import ${basepackage}.${subpkg}.${module}.model.data.${className}GetListData;
-import ${basepackage}.${subpkg}.${module}.model.data.${className}GetOneData;
-import ${basepackage}.${subpkg}.${module}.model.entity.${className}Entity;
-import ${basepackage}.${subpkg}.${module}.model.query.${className}GetListQuery;
-import ${basepackage}.${subpkg}.${module}.model.query.${className}GetOneQuery;
+import ${basepackage}.${subpkg}.${module}.model.result.${className}GetListResult;
+import ${basepackage}.${subpkg}.${module}.model.result.${className}GetOneResult;
+import ${basepackage}.${subpkg}.${module}.model.entity.${className};
+import ${basepackage}.${subpkg}.${module}.model.param.${className}GetListParam;
+import ${basepackage}.${subpkg}.${module}.model.param.${className}GetOneParam;
 
 import chok2.devwork.pojo.ChokDto;
 
@@ -39,7 +37,7 @@ public class ${className}Service
 	private ${className}Dao dao;
 
 	@Caching(evict = { @CacheEvict(allEntries = true) })
-	public ChokDto<Object> create(${className}Entity entity)
+	public ChokDto<Object> create(${className} entity)
 	{
 		dao.create(entity);
 		return new ChokDto<Object>();
@@ -53,23 +51,23 @@ public class ${className}Service
 	}
 
 	@Caching(evict = { @CacheEvict(value = {"CACHE_${className}"}, allEntries = true) })
-	public ChokDto<Object> modify(${className}Entity entity)
+	public ChokDto<Object> modify(${className} entity)
 	{
 		dao.modify(entity);
 		return new ChokDto<Object>();
 	}	
 
-	@Cacheable(key = "#query")
-	public ChokDto<${className}GetOneData> getOne(${className}GetOneQuery query) 
+	@Cacheable(key = "#param")
+	public ChokDto<${className}GetOneResult> getOne(${className}GetOneParam param) 
 	{
-		${className}GetOneData data = dao.getOne(query);
-		return new ChokDto<${className}GetOneData>(data);
+		${className}GetOneResult result = dao.getOne(param);
+		return new ChokDto<${className}GetOneResult>(result);
 	}
 
-	@Cacheable(key = "#query")
-	public ChokDto<List<${className}GetListData>> getList(${className}GetListQuery query) 
+	@Cacheable(key = "#param")
+	public ChokDto<List<${className}GetListResult>> getList(${className}GetListParam param) 
 	{
-		List<${className}GetListData> data = dao.getList(query);
-		return new ChokDto<List<${className}GetListData>>(data);
+		List<${className}GetListResult> result = dao.getList(param);
+		return new ChokDto<List<${className}GetListResult>>(result);
 	}
 }
