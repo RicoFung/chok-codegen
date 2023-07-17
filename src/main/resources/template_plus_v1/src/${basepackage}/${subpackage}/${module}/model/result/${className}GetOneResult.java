@@ -2,7 +2,7 @@
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
 <#assign subpkg = subpackage?replace("/",".")>
-package ${basepackage}.${subpkg}.${module}.model.data;
+package ${basepackage}.${subpkg}.${module}.model.result;
 
 import ${basepackage}.${subpkg}.${module}.model.entity.${className};
 

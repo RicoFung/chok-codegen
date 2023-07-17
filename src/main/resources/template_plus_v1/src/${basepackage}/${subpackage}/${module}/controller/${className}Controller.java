@@ -68,7 +68,11 @@ public class ${className}Controller extends BaseRestController
 	@RequestMapping(value = "/remove", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public ChokDto<Object> remove(@RequestBody @Validated ${className}RemoveRequest request)
 	{
-		return service.remove(request.getTcRowidArray());
+		<#if table.pkCount gte 1>
+		<#list table.compositeIdColumns as column>
+         return service.remove(request.get${column.columnName}Array());
+		</#list>
+		</#if>
 	}
 
 	@Operation(summary = "修改")

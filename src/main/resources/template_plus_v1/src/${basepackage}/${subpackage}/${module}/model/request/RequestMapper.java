@@ -8,9 +8,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-import ${basepackage}.${subpkg}.${module}.model.entity.${className}Entity;
-import ${basepackage}.${subpkg}.${module}.model.query.${className}GetListParam;
-import ${basepackage}.${subpkg}.${module}.model.query.${className}GetOneParam;
+import ${basepackage}.${subpkg}.${module}.model.entity.${className};
+import ${basepackage}.${subpkg}.${module}.model.param.${className}GetListParam;
+import ${basepackage}.${subpkg}.${module}.model.param.${className}GetOneParam;
 
 @Mapper
 public interface RequestMapper
@@ -22,9 +22,9 @@ public interface RequestMapper
 	@Mapping(target = "${column.columnNameLower}", ignore = true)
 </#list>
 </#if>
-	${className}Entity requestToEntity(${className}CreateRequest request);
+	${className} requestToEntity(${className}CreateRequest request);
 	
-	${className}Entity requestToEntity(${className}ModifyRequest request);
+	${className} requestToEntity(${className}ModifyRequest request);
 	
 	${className}GetOneParam requestToParam(${className}GetOneRequest request);
 	
