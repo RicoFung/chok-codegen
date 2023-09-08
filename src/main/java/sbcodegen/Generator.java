@@ -11,13 +11,15 @@ public class Generator
 //		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_v1";
 //		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_v2";
 //		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_plus_v0";
-		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_plus_v1";
+//		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_plus_v1";
+		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_plus_v2";
 		
 		GeneratorFacade g = new GeneratorFacade();
 		g.getGenerator().addTemplateRootDir(templatePath);
 		
 		// 通过数据库表生成文件
-		g.generateByTable("STOCK_SHOPAPP");
+//		g.generateByTable("tb_user_info_0a");
+		g.generateByTable("tb_dict_brand_0a");
 
 	}
 }

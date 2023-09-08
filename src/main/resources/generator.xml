@@ -12,8 +12,8 @@
     
     <!-- 定义包名，模块名 -->
     <entry key="basepackage">com</entry>  
-    <entry key="subpackage">epo</entry>
-    <entry key="module">stock.shopapp</entry>
+    <entry key="subpackage">example</entry>
+    <entry key="module">brand</entry>
 	<!--     
     <entry key="basepackage">com</entry>  
     <entry key="subpackage">domain</entry>
@@ -31,15 +31,21 @@
     <entry key="tableRemovePrefixes"></entry>  
 
 	<!-- jdbc账密 -->
+	<!-- 
     <entry key="jdbc_username">e3</entry>  
     <entry key="jdbc_password">E3Uatuser345</entry>  
+     -->
+	<!-- 
+    <entry key="jdbc_username">epoerp_u</entry>  
+    <entry key="jdbc_password">epoerp_u</entry>  
+     -->
 	<!-- 
     <entry key="jdbc_username">SyncPosTest</entry>  
     <entry key="jdbc_password">111111</entry> 
      --> 
+    <entry key="jdbc_username">epoerp_u</entry>  
+    <entry key="jdbc_password">epoerp_u</entry>  
 	<!-- 
-    <entry key="jdbc_username">epodrp_u</entry>  
-    <entry key="jdbc_password">epodrp_u</entry>  
      -->
     <!-- 
     <entry key="jdbc_username">epodrp_t</entry>  
@@ -47,11 +53,13 @@
      -->
 
     <!-- oracle需要指定jdbc.schema,其它数据库忽略此项配置  -->  
+    <entry key="jdbc_schema">EPOERP_U</entry>  
+    <entry key="jdbc_catalog">EPOERP_U</entry>  
+	<!--     
     <entry key="jdbc_schema">E3</entry>  
     <entry key="jdbc_catalog">E3</entry>  
-	<!--     
-    <entry key="jdbc_schema">EPODRP_U</entry>  
-    <entry key="jdbc_catalog">EPODRP_U</entry>  
+    <entry key="jdbc_schema">EPOERP_U</entry>  
+    <entry key="jdbc_catalog">EPOERP_U</entry>  
 	<entry key="jdbc_schema">EPODRP_T</entry>  
     <entry key="jdbc_catalog">EPODRP_T</entry>   
     -->
@@ -67,12 +75,13 @@
     <entry key="java_typemapping.java.math.BigDecimal">java.lang.Long</entry>  
   
    
-    <!-- Oracle  jdbc:oracle:oci:@tnsname_devdb 
+    <!-- Oracle  jdbc:oracle:oci:@tnsname_devdb --> 
     <entry key="jdbc_url">jdbc:oracle:thin:@ECNGZVWERP301U.mo-co.org:1521:orcl</entry>  
     <entry key="jdbc_driver">oracle.jdbc.driver.OracleDriver</entry>  
-    --> 
+    <!-- 
     <entry key="jdbc_url">jdbc:oracle:thin:@10.12.204.39:1521/ZTDEV</entry>  
     <entry key="jdbc_driver">oracle.jdbc.driver.OracleDriver</entry>  
+     -->
 <!--     <entry key="jdbc_driver">oracle.jdbc.OracleDriver</entry>   -->
     
     <!-- MySql 
