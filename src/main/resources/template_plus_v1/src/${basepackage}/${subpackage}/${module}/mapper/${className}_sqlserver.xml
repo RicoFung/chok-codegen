@@ -146,13 +146,13 @@
 		</where>
 	</sql>	
 	
-	<!-- getOne -->
-	<resultMap type="${basepackage}.${subpkg}.${module}.model.result.${className}GetOneResult" id="getOneResult">
+	<!-- queryOne -->
+	<resultMap type="${basepackage}.${subpkg}.${module}.model.result.${className}QueryOneResult" id="queryOneResult">
         <#list table.columns as column>
         <result property="${column.columnNameLower}" column="${column.sqlName?upper_case}"/>
 		</#list>
 	</resultMap>
-	<select id="getOne" resultMap="getOneResult">
+	<select id="queryOne" resultMap="queryOneResult">
 		SELECT <include refid="dynamicColumns"/> 
 		  FROM ${table.sqlName?upper_case} T 
 	     <#if table.pkCount gte 1>
@@ -160,10 +160,10 @@
          </#if> 
 	</select>
 	
-	<!-- getList -->
-	<resultMap type="${basepackage}.${subpkg}.${module}.model.result.${className}GetListResult" id="getListResult" extends="getOneResult">
+	<!-- queryList -->
+	<resultMap type="${basepackage}.${subpkg}.${module}.model.result.${className}QueryListResult" id="queryListResult" extends="queryOneResult">
 	</resultMap>
-	<select id="getList" parameterType="${basepackage}.${subpkg}.${module}.model.param.${className}GetListParam" resultType="list" resultMap="getListResult">
+	<select id="queryList" parameterType="${basepackage}.${subpkg}.${module}.model.param.${className}QueryListParam" resultType="list" resultMap="queryListResult">
 		<choose>
 			<!-- 翻页 -->
 			<when test="@chok2.devwork.dao.Ognl@isNotEmpty(page) and @chok2.devwork.dao.Ognl@isNotEmpty(pagesize)">

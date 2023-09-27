@@ -18,17 +18,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import ${basepackage}.${subpkg}.${module}.model.result.${className}GetListResult;
-import ${basepackage}.${subpkg}.${module}.model.result.${className}GetOneResult;
+import ${basepackage}.${subpkg}.${module}.model.result.${className}QueryListResult;
+import ${basepackage}.${subpkg}.${module}.model.result.${className}QueryOneResult;
 import ${basepackage}.${subpkg}.${module}.model.entity.${className};
 import ${basepackage}.${subpkg}.${module}.model.request.RequestMapper;
 import ${basepackage}.${subpkg}.${module}.model.request.${className}CreateRequest;
 import ${basepackage}.${subpkg}.${module}.model.request.${className}RemoveRequest;
-import ${basepackage}.${subpkg}.${module}.model.request.${className}GetListRequest;
-import ${basepackage}.${subpkg}.${module}.model.request.${className}GetOneRequest;
+import ${basepackage}.${subpkg}.${module}.model.request.${className}QueryListRequest;
+import ${basepackage}.${subpkg}.${module}.model.request.${className}QueryOneRequest;
 import ${basepackage}.${subpkg}.${module}.model.request.${className}ModifyRequest;
-import ${basepackage}.${subpkg}.${module}.model.param.${className}GetListParam;
-import ${basepackage}.${subpkg}.${module}.model.param.${className}GetOneParam;
+import ${basepackage}.${subpkg}.${module}.model.param.${className}QueryListParam;
+import ${basepackage}.${subpkg}.${module}.model.param.${className}QueryOneParam;
 import ${basepackage}.${subpkg}.${module}.service.${className}Service;
 
 import chok2.devwork.BaseRestController;
@@ -84,18 +84,18 @@ public class ${className}Controller extends BaseRestController
 	}
 
 	@Operation(summary = "明细")
-	@RequestMapping(value = "/getOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public ChokDto<${className}GetOneResult> getOne(@RequestBody @Validated ${className}GetOneRequest request)
+	@RequestMapping(value = "/queryOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public ChokDto<${className}QueryOneResult> queryOne(@RequestBody @Validated ${className}QueryOneRequest request)
 	{
-		${className}GetOneParam param = RequestMapper.INSTANCE.requestToParam(request);
-		return service.getOne(param);
+		${className}QueryOneParam param = RequestMapper.INSTANCE.requestToParam(request);
+		return service.queryOne(param);
 	}
 
 	@Operation(summary = "列表")
-	@RequestMapping(value = "/getList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public ChokDto<List<${className}GetListResult>> getList(@RequestBody @Validated ${className}GetListRequest request)
+	@RequestMapping(value = "/queryList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public ChokDto<List<${className}QueryListResult>> queryList(@RequestBody @Validated ${className}QueryListRequest request)
 	{
-		${className}GetListParam param = RequestMapper.INSTANCE.requestToParam(request);
-		return service.getList(param);
+		${className}QueryListParam param = RequestMapper.INSTANCE.requestToParam(request);
+		return service.queryList(param);
 	}
 }

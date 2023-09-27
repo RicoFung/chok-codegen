@@ -4,17 +4,14 @@
 <#assign classNameLowerCase = table.classNameLowerCase>  
 <#assign classNameFirstLower = table.classNameFirstLower>  
 <#assign subpkg = subpackage?replace("/",".")>
-package ${basepackage}.${subpkg}.${module}.model.request;
+package ${basepackage}.${subpkg}.${module}.model.param;
 
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-
-@Schema(description = "${className}GetListRequest 列表入参")
-public class ${className}GetListRequest implements Serializable
+public class ${className}QueryListParam implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 
@@ -22,38 +19,32 @@ public class ${className}GetListRequest implements Serializable
 	// 1.默认参数
 	// ********************************************************************************************
 
-	@Schema(title = "动态列", example = "[<#list table.columns as column>\"${column.columnNameLower}\"<#if column_has_next>,</#if></#list>]")
 	private java.lang.String[] dynamicColumns;
 	
-	@Schema(title = "动态排序", example = "[<#if table.pkCount gte 1><#list table.compositeIdColumns as column>{\"sortName\":\"${column.columnNameLower}\",\"sortOrder\":\"DESC\"}<#if column_has_next>, </#if></#list></#if>]")
 	private List<Map<String, Object>> dynamicOrder;
 	
 	private DynamicWhere dynamicWhere;
 
-	@Schema(title = "页码", example = "1")
-	private Integer page;
+	private int page;
 
-	@Schema(title = "页大小", example = "10")
-	private Integer pagesize;
+	private int pagesize;
 
 	// ********************************************************************************************
 	// 2.表单参数
 	// ********************************************************************************************
-	@Schema(title = "动态过滤", name="DynamicWhere(${className}GetListRequest)", description="DynamicWhere(${className}GetListRequest)")
+	
 	public static class DynamicWhere implements Serializable
 	{
 		private static final long serialVersionUID = 1L;
 		
 <#list table.notPkColumns as column>
 	    // ${column.columnAlias!}       db_column: ${column.sqlName} 
-		@Schema(title = "${column.columnAlias!}", example = "")
 		private ${column.javaType} ${column.columnNameLower};
 </#list>
 		
 <#if table.pkCount gte 1>
 <#list table.compositeIdColumns as column>
 		// ${column.columnAlias!}       db_column: ${column.sqlName} 
-		@Schema(title = "${column.columnAlias!}Array")
 		private String[] ${column.columnNameLower}Array;
 </#list>
 </#if>	
@@ -138,22 +129,22 @@ public class ${className}GetListRequest implements Serializable
 		this.dynamicWhere = dynamicWhere;
 	}
 	
-	public Integer getPage()
+	public int getPage()
 	{
 		return page;
 	}
 
-	public void setPage(Integer page)
+	public void setPage(int page)
 	{
 		this.page = page;
 	}
 
-	public Integer getPagesize()
+	public int getPagesize()
 	{
 		return pagesize;
 	}
 
-	public void setPagesize(Integer pagesize)
+	public void setPagesize(int pagesize)
 	{
 		this.pagesize = pagesize;
 	}
@@ -161,7 +152,7 @@ public class ${className}GetListRequest implements Serializable
 	@Override
 	public String toString()
 	{
-		return "${className}GetListRequest [dynamicColumns=" + Arrays.toString(dynamicColumns) + ", dynamicOrder="
+		return "${className}QueryListParam [dynamicColumns=" + Arrays.toString(dynamicColumns) + ", dynamicOrder="
 				+ dynamicOrder + ", dynamicWhere=" + dynamicWhere.toString() + ", page=" + page + ", pagesize=" + pagesize + "]";
 	}
 }

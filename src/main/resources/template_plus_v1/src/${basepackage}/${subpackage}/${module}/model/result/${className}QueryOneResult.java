@@ -6,7 +6,7 @@ package ${basepackage}.${subpkg}.${module}.model.result;
 
 import ${basepackage}.${subpkg}.${module}.model.entity.${className};
 
-public class ${className}GetOneResult extends ${className}
+public class ${className}QueryOneResult extends ${className}
 {
 	private static final long serialVersionUID = 1L;
 }

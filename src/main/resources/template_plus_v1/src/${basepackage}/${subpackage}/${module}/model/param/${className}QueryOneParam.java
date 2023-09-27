@@ -2,25 +2,19 @@
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
 <#assign subpkg = subpackage?replace("/",".")>
-package ${basepackage}.${subpkg}.${module}.model.request;
+package ${basepackage}.${subpkg}.${module}.model.param;
 
 import java.io.Serializable;
 import java.util.Arrays;
-import javax.validation.constraints.NotNull;
-import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(description = "${className}GetOneRequest 详情入参")
-public class ${className}GetOneRequest implements Serializable
+public class ${className}QueryOneParam implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
-	@Schema(title = "动态列", example = "[<#list table.columns as column>\"${column.columnNameLower}\"<#if column_has_next>,</#if></#list>]")
 	private java.lang.String[] dynamicColumns;
 
 <#if table.pkCount gte 1>
 <#list table.compositeIdColumns as column>
-	@Schema(title = "主键", example = "", required = true)
-	@NotNull(message = "${column.columnAlias}不能为空！")
 	private String ${column.columnNameLower};
 </#list>
 </#if>
@@ -48,6 +42,6 @@ public class ${className}GetOneRequest implements Serializable
 	@Override
 	public String toString()
 	{
-		return "${className}GetOneRequest [dynamicColumns=" + Arrays.toString(dynamicColumns) + <#list table.compositeIdColumns as column>", ${column.columnNameLower}=" + ${column.columnNameLower}</#list> + "]";
+		return "${className}QueryOneParam [dynamicColumns=" + Arrays.toString(dynamicColumns) + <#list table.compositeIdColumns as column>", ${column.columnNameLower}=" + ${column.columnNameLower}</#list> + "]";
 	}
 }

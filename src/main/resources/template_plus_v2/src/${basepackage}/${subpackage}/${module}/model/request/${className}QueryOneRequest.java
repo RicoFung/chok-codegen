@@ -9,8 +9,8 @@ import java.util.Arrays;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(description = "${className}GetOneRequest 详情入参")
-public class ${className}GetOneRequest implements Serializable
+@Schema(description = "${className}QueryOneRequest 详情入参")
+public class ${className}QueryOneRequest implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
@@ -22,7 +22,7 @@ public class ${className}GetOneRequest implements Serializable
 	// ********************************************************************************************
 	// 2.表单参数
 	// ********************************************************************************************
-	@Schema(title = "动态过滤", name="DynamicWhere(${className}GetOneRequest)", description="DynamicWhere(${className}GetOneRequest)")
+	@Schema(title = "动态过滤", name="DynamicWhere(${className}QueryOneRequest)", description="DynamicWhere(${className}QueryOneRequest)")
 	public static class DynamicWhere implements Serializable
 	{
 		private static final long serialVersionUID = 1L;
@@ -92,6 +92,6 @@ public class ${className}GetOneRequest implements Serializable
 	@Override
 	public String toString()
 	{
-		return "${className}GetOneRequest [dynamicColumns=" + Arrays.toString(dynamicColumns) + ", dynamicWhere=" + dynamicWhere.toString() + "]";
+		return "${className}QueryOneRequest [dynamicColumns=" + Arrays.toString(dynamicColumns) + ", dynamicWhere=" + dynamicWhere.toString() + "]";
 	}
 }

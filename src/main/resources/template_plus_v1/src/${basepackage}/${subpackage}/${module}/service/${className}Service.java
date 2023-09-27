@@ -18,11 +18,11 @@ import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import ${basepackage}.${subpkg}.${module}.dao.${className}Dao;
-import ${basepackage}.${subpkg}.${module}.model.result.${className}GetListResult;
-import ${basepackage}.${subpkg}.${module}.model.result.${className}GetOneResult;
+import ${basepackage}.${subpkg}.${module}.model.result.${className}QueryListResult;
+import ${basepackage}.${subpkg}.${module}.model.result.${className}QueryOneResult;
 import ${basepackage}.${subpkg}.${module}.model.entity.${className};
-import ${basepackage}.${subpkg}.${module}.model.param.${className}GetListParam;
-import ${basepackage}.${subpkg}.${module}.model.param.${className}GetOneParam;
+import ${basepackage}.${subpkg}.${module}.model.param.${className}QueryListParam;
+import ${basepackage}.${subpkg}.${module}.model.param.${className}QueryOneParam;
 
 import chok2.devwork.pojo.ChokDto;
 
@@ -58,16 +58,16 @@ public class ${className}Service
 	}	
 
 	@Cacheable(key = "#param")
-	public ChokDto<${className}GetOneResult> getOne(${className}GetOneParam param) 
+	public ChokDto<${className}QueryOneResult> queryOne(${className}QueryOneParam param) 
 	{
-		${className}GetOneResult result = dao.getOne(param);
-		return new ChokDto<${className}GetOneResult>(result);
+		${className}QueryOneResult result = dao.queryOne(param);
+		return new ChokDto<${className}QueryOneResult>(result);
 	}
 
 	@Cacheable(key = "#param")
-	public ChokDto<List<${className}GetListResult>> getList(${className}GetListParam param) 
+	public ChokDto<List<${className}QueryListResult>> queryList(${className}QueryListParam param) 
 	{
-		List<${className}GetListResult> result = dao.getList(param);
-		return new ChokDto<List<${className}GetListResult>>(result);
+		List<${className}QueryListResult> result = dao.queryList(param);
+		return new ChokDto<List<${className}QueryListResult>>(result);
 	}
 }

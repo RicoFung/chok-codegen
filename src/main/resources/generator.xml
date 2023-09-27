@@ -11,9 +11,9 @@
     <entry key="outRoot">target</entry>
     
     <!-- 定义包名，模块名 -->
-    <entry key="basepackage">com</entry>  
-    <entry key="subpackage">example</entry>
-    <entry key="module">brand</entry>
+    <entry key="basepackage">com.epo</entry>  
+    <entry key="subpackage">manage</entry>
+    <entry key="module">userinfo</entry>
 	<!--     
     <entry key="basepackage">com</entry>  
     <entry key="subpackage">domain</entry>
@@ -30,44 +30,37 @@
     <!-- 需要移除的表名前缀,使用逗号进行分隔多个前缀,示例值: t_,v_ -->  
     <entry key="tableRemovePrefixes"></entry>  
 
-	<!-- jdbc账密 -->
-	<!-- 
+	<!-- jdbc 账密 -->
+    <!-- oracle 需要指定 jdbc.schema,其它数据库忽略此项配置  -->  
     <entry key="jdbc_username">e3</entry>  
     <entry key="jdbc_password">E3Uatuser345</entry>  
-     -->
+    <entry key="jdbc_schema">E3</entry>  
+    <entry key="jdbc_catalog">E3</entry>  
+	
 	<!-- 
     <entry key="jdbc_username">epoerp_u</entry>  
     <entry key="jdbc_password">epoerp_u</entry>  
+    <entry key="jdbc_schema">EPOERP_U</entry>  
+    <entry key="jdbc_catalog">EPOERP_U</entry>  
      -->
+     
+    <!-- 
+    <entry key="jdbc_username">epodrp_t</entry>  
+    <entry key="jdbc_password">epodrp_t</entry>  
+	<entry key="jdbc_schema">EPODRP_T</entry>  
+    <entry key="jdbc_catalog">EPODRP_T</entry>   
+     -->
+     
 	<!-- 
     <entry key="jdbc_username">SyncPosTest</entry>  
     <entry key="jdbc_password">111111</entry> 
      --> 
-    <entry key="jdbc_username">epoerp_u</entry>  
-    <entry key="jdbc_password">epoerp_u</entry>  
-	<!-- 
-     -->
-    <!-- 
-    <entry key="jdbc_username">epodrp_t</entry>  
-    <entry key="jdbc_password">epodrp_t</entry>  
-     -->
-
-    <!-- oracle需要指定jdbc.schema,其它数据库忽略此项配置  -->  
-    <entry key="jdbc_schema">EPOERP_U</entry>  
-    <entry key="jdbc_catalog">EPOERP_U</entry>  
-	<!--     
-    <entry key="jdbc_schema">E3</entry>  
-    <entry key="jdbc_catalog">E3</entry>  
-    <entry key="jdbc_schema">EPOERP_U</entry>  
-    <entry key="jdbc_catalog">EPOERP_U</entry>  
-	<entry key="jdbc_schema">EPODRP_T</entry>  
-    <entry key="jdbc_catalog">EPODRP_T</entry>   
-    -->
 
     <!-- 数据库类型映射  -->  
-    <entry key="java_typemapping.java.sql.Timestamp">java.lang.String</entry>  
-    <entry key="java_typemapping.java.sql.Date">java.lang.String</entry>  
-    <entry key="java_typemapping.java.sql.Time">java.lang.String</entry>    
+    <entry key="java_typemapping.java.sql.Timestamp">java.util.Date</entry>  
+    <entry key="java_typemapping.java.sql.Date">java.util.Date</entry>  
+    <entry key="java_typemapping.java.sql.Time">java.util.Date</entry>    
+    <entry key="java_typemapping.java.lang.Object">java.lang.String</entry>  
     <entry key="java_typemapping.java.lang.Double">java.lang.Double</entry>    
     <entry key="java_typemapping.java.lang.Float">java.lang.Double</entry>    
     <entry key="java_typemapping.java.lang.Byte">java.lang.Integer</entry>  
@@ -76,10 +69,10 @@
   
    
     <!-- Oracle  jdbc:oracle:oci:@tnsname_devdb --> 
-    <entry key="jdbc_url">jdbc:oracle:thin:@ECNGZVWERP301U.mo-co.org:1521:orcl</entry>  
+    <entry key="jdbc_url">jdbc:oracle:thin:@10.12.204.39:1521/ZTDEV</entry>  
     <entry key="jdbc_driver">oracle.jdbc.driver.OracleDriver</entry>  
     <!-- 
-    <entry key="jdbc_url">jdbc:oracle:thin:@10.12.204.39:1521/ZTDEV</entry>  
+    <entry key="jdbc_url">jdbc:oracle:thin:@ECNGZVWERP301U.mo-co.org:1521:orcl</entry>  
     <entry key="jdbc_driver">oracle.jdbc.driver.OracleDriver</entry>  
      -->
 <!--     <entry key="jdbc_driver">oracle.jdbc.OracleDriver</entry>   -->

@@ -9,8 +9,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import ${basepackage}.${subpkg}.${module}.model.entity.${className};
-import ${basepackage}.${subpkg}.${module}.model.param.${className}GetListParam;
-import ${basepackage}.${subpkg}.${module}.model.param.${className}GetOneParam;
+import ${basepackage}.${subpkg}.${module}.model.param.${className}QueryListParam;
+import ${basepackage}.${subpkg}.${module}.model.param.${className}QueryOneParam;
 
 @Mapper
 public interface RequestMapper
@@ -26,8 +26,8 @@ public interface RequestMapper
 	
 	${className} requestToEntity(${className}ModifyRequest request);
 	
-	${className}GetOneParam requestToParam(${className}GetOneRequest request);
+	${className}QueryOneParam requestToParam(${className}QueryOneRequest request);
 	
-	${className}GetListParam requestToParam(${className}GetListRequest request);
+	${className}QueryListParam requestToParam(${className}QueryListRequest request);
 	
 }
