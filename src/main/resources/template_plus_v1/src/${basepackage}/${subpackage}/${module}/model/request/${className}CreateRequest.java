@@ -8,6 +8,7 @@ import java.io.Serializable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import io.swagger.v3.oas.annotations.media.Schema;
+import cn.hutool.core.date.DateUtil;
 
 @Schema(description = "${className}CreateRequest 新增入参")
 public class ${className}CreateRequest implements Serializable
@@ -30,11 +31,11 @@ public class ${className}CreateRequest implements Serializable
 <#if column.isDateTimeColumn>
 	public String get${column.columnName}String() 
 	{
-		return DateConvertUtils.format(get${column.columnName}(), FORMAT_${column.constantName});
+		return DateUtil.format(get${column.columnName}(), "yyyy-MM-dd HH:mm:ss");
 	}
 	public void set${column.columnName}String(String value) 
 	{
-		set${column.columnName}(DateConvertUtils.parse(value, FORMAT_${column.constantName},${column.javaType}.class));
+		set${column.columnName}(DateUtil.parse(value, "yyyy-MM-dd HH:mm:ss"));
 	}
 	</#if>	
 	public ${column.javaType} get${column.columnName}() 

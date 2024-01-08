@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import cn.hutool.core.date.DateUtil;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -62,11 +63,11 @@ public class ${className}QueryListRequest implements Serializable
 <#if column.isDateTimeColumn>
 		public String get${column.columnName}String() 
 		{
-			return DateConvertUtils.format(get${column.columnName}(), FORMAT_${column.constantName});
+			return DateUtil.format(get${column.columnName}(), "yyyy-MM-dd HH:mm:ss");
 		}
 		public void set${column.columnName}String(String value) 
 		{
-			set${column.columnName}(DateConvertUtils.parse(value, FORMAT_${column.constantName},${column.javaType}.class));
+			set${column.columnName}(DateUtil.parse(value, "yyyy-MM-dd HH:mm:ss"));
 		}
 </#if>	
 		public ${column.javaType} get${column.columnName}() 

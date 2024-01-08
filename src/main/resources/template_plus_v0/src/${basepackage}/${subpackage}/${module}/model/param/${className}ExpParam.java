@@ -134,7 +134,7 @@ public class ${className}ExpParam implements Serializable
 		<#if column.isDateTimeColumn>
 	public String get${column.columnName}String() 
 	{
-		return DateConvertUtils.format(get${column.columnName}(), FORMAT_${column.constantName});
+		return DateUtil.format(get${column.columnName}(), "yyyy-MM-dd HH:mm:ss");
 	}
 	public void set${column.columnName}String(String value) 
 	{
