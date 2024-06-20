@@ -23,7 +23,7 @@ import ${basepackage}.${subpkg}.${module}.model.entity.${className};
 import ${basepackage}.${subpkg}.${module}.model.param.${className}QueryListParam;
 import ${basepackage}.${subpkg}.${module}.model.param.${className}QueryOneParam;
 
-import chok2.devwork.pojo.ChokDto;
+import chok2.devwork.pojo.ChokResponse;
 
 @CacheConfig(cacheNames = {"CACHE_${className}"})
 @Service(value = "${apiGroup}${className}Service")
@@ -36,37 +36,37 @@ public class ${className}Service
 	private ${className}Dao dao;
 
 	@Caching(evict = { @CacheEvict(allEntries = true) })
-	public ChokDto<Object> create(${className} entity)
+	public ChokResponse<Object> create(${className} entity)
 	{
 		dao.create(entity);
-		return new ChokDto<Object>();
+		return new ChokResponse<Object>();
 	}
 
 	@Caching(evict = { @CacheEvict(allEntries = true) })
-	public ChokDto<Object> remove(String[] ids)
+	public ChokResponse<Object> remove(String[] ids)
 	{
 		dao.remove(ids);
-		return new ChokDto<Object>();
+		return new ChokResponse<Object>();
 	}
 
 	@Caching(evict = { @CacheEvict(value = {"CACHE_${className}"}, allEntries = true) })
-	public ChokDto<Object> modify(${className} entity)
+	public ChokResponse<Object> modify(${className} entity)
 	{
 		dao.modify(entity);
-		return new ChokDto<Object>();
+		return new ChokResponse<Object>();
 	}	
 
 	@Cacheable(key = "#param")
-	public ChokDto<${className}Result> queryOne(${className}QueryOneParam param) 
+	public ChokResponse<${className}Result> queryOne(${className}QueryOneParam param) 
 	{
 		${className}Result result = dao.queryOne(param);
-		return new ChokDto<${className}Result>(result);
+		return new ChokResponse<${className}Result>(result);
 	}
 
 	@Cacheable(key = "#param")
-	public ChokDto<List<${className}Result>> queryList(${className}QueryListParam param) 
+	public ChokResponse<List<${className}Result>> queryList(${className}QueryListParam param) 
 	{
 		List<${className}Result> result = dao.queryList(param);
-		return new ChokDto<List<${className}Result>>(result);
+		return new ChokResponse<List<${className}Result>>(result);
 	}
 }

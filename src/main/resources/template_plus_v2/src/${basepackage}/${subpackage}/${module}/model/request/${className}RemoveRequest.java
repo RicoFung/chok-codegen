@@ -7,12 +7,15 @@ package ${basepackage}.${subpkg}.${module}.model.request;
 import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.springframework.security.core.SpringSecurityCoreVersion;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "${className}RemoveRequest 删除入参")
 public class ${className}RemoveRequest implements Serializable
 {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
 
 <#if table.pkCount gte 1>
 <#list table.compositeIdColumns as column>

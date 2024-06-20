@@ -11,12 +11,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.security.core.SpringSecurityCoreVersion;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "${className}QueryListRequest 列表入参")
 public class ${className}QueryListRequest implements Serializable
 {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
 
 	// ********************************************************************************************
 	// 1.默认参数
@@ -59,16 +61,6 @@ public class ${className}QueryListRequest implements Serializable
 </#if>	
 		
 <#list table.notPkColumns as column>
-<#if column.isDateTimeColumn>
-		public String get${column.columnName}String() 
-		{
-			return DateUtil.format(get${column.columnName}(), "yyyy-MM-dd HH:mm:ss");
-		}
-		public void set${column.columnName}String(String value) 
-		{
-			set${column.columnName}(DateConvertUtils.parse(value, FORMAT_${column.constantName},${column.javaType}.class));
-		}
-</#if>	
 		public ${column.javaType} get${column.columnName}() 
 		{
 			return this.${column.columnNameLower};

@@ -7,12 +7,14 @@ package ${basepackage}.${subpkg}.${module}.model.request;
 import java.io.Serializable;
 import java.util.Arrays;
 
+import org.springframework.security.core.SpringSecurityCoreVersion;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "${className}QueryOneRequest 详情入参")
 public class ${className}QueryOneRequest implements Serializable
 {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
 	
 	@Schema(title = "动态列", example = "[<#list table.columns as column>\"${column.columnNameLower}\"<#if column_has_next>,</#if></#list>]")
 	private java.lang.String[] dynamicColumns;
@@ -34,16 +36,6 @@ public class ${className}QueryOneRequest implements Serializable
 </#list>
 		
 <#list table.columns as column>
-<#if column.isDateTimeColumn>
-		public String get${column.columnName}String() 
-		{
-			return DateUtil.format(get${column.columnName}(), "yyyy-MM-dd HH:mm:ss");
-		}
-		public void set${column.columnName}String(String value) 
-		{
-			set${column.columnName}(DateConvertUtils.parse(value, FORMAT_${column.constantName},${column.javaType}.class));
-		}
-</#if>	
 		public ${column.javaType} get${column.columnName}() 
 		{
 			return this.${column.columnNameLower};

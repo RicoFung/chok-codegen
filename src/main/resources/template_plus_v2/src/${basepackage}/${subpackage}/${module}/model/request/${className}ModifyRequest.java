@@ -8,12 +8,15 @@ import java.io.Serializable;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.security.core.SpringSecurityCoreVersion;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "${className}ModifyRequest 修改入参")
 public class ${className}ModifyRequest implements Serializable
 {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
 
 <#if table.pkCount gte 1>
 <#list table.compositeIdColumns as column>
@@ -47,16 +50,6 @@ public class ${className}ModifyRequest implements Serializable
 	}
 </#list>
 <#list table.notPkColumns as column>
-<#if column.isDateTimeColumn>
-	public String get${column.columnName}String() 
-	{
-		return DateUtil.format(get${column.columnName}(), "yyyy-MM-dd HH:mm:ss");
-	}
-	public void set${column.columnName}String(String value) 
-	{
-		set${column.columnName}(DateConvertUtils.parse(value, FORMAT_${column.constantName},${column.javaType}.class));
-	}
-</#if>
 	public ${column.javaType} get${column.columnName}() 
 	{
 		return this.${column.columnNameLower};

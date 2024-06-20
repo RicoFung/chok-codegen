@@ -5,12 +5,14 @@
 package ${basepackage}.${subpkg}.${module}.model.entity;
 
 import java.io.Serializable;
+
+import org.springframework.security.core.SpringSecurityCoreVersion;
 /**
 <#include "/java_description.include">
  */
 public class ${className} implements Serializable
 {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
 
 <#if table.pkCount gte 1>
 <#list table.compositeIdColumns as column>
@@ -39,16 +41,6 @@ public class ${className} implements Serializable
 	}
 </#list>
 <#list table.notPkColumns as column>
-<#if column.isDateTimeColumn>
-	public String get${column.columnName}String() 
-	{
-		return DateUtil.format(get${column.columnName}(), "yyyy-MM-dd HH:mm:ss");
-	}
-	public void set${column.columnName}String(String value) 
-	{
-		set${column.columnName}(DateConvertUtils.parse(value, FORMAT_${column.constantName},${column.javaType}.class));
-	}
-</#if>
 	public ${column.javaType} get${column.columnName}() 
 	{
 		return this.${column.columnNameLower};

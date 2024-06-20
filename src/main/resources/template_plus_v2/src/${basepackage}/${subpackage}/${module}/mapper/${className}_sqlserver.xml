@@ -154,22 +154,21 @@
 		</where>
 	</sql>	
 	
-	<!-- queryOne -->
-	<resultMap type="${basepackage}.${subpkg}.${module}.model.result.${className}QueryOneResult" id="queryOneResult">
+	<resultMap type="${basepackage}.${subpkg}.${module}.model.result.${className}Result" id="${classNameFirstLower}Result">
         <#list table.columns as column>
         <result property="${column.columnNameLower}" column="${column.sqlName?upper_case}"/>
 		</#list>
 	</resultMap>
-	<select id="queryOne" resultMap="queryOneResult">
+
+	<!-- queryOne -->
+	<select id="queryOne" resultMap="${classNameFirstLower}Result">
 		SELECT <include refid="dynamicColumns"/> 
 		  FROM ${table.sqlName?upper_case} T 
 		  <include refid="dynamicWhereEqual" />
 	</select>
 	
 	<!-- queryList -->
-	<resultMap type="${basepackage}.${subpkg}.${module}.model.result.${className}QueryListResult" id="queryListResult" extends="queryOneResult">
-	</resultMap>
-	<select id="queryList" parameterType="${basepackage}.${subpkg}.${module}.model.param.${className}QueryListParam" resultType="list" resultMap="queryListResult">
+	<select id="queryList" parameterType="${basepackage}.${subpkg}.${module}.model.param.${className}QueryListParam" resultType="list" resultMap="${classNameFirstLower}Result">
 		<choose>
 			<!-- 翻页 -->
 			<when test="@chok2.devwork.dao.Ognl@isNotEmpty(page) and @chok2.devwork.dao.Ognl@isNotEmpty(pagesize)">
@@ -195,7 +194,7 @@
 		</choose>
 	</select>
 	
-	<select id="getCount" resultType="int">
+	<select id="queryCount" resultType="int">
 		SELECT COUNT(1) FROM ${table.sqlName?upper_case} T
 		<include refid="dynamicWhere" />
 	</select>

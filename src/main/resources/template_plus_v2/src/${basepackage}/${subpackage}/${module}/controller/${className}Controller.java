@@ -18,20 +18,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import ${basepackage}.${subpkg}.${module}.model.ModelMapper;
 import ${basepackage}.${subpkg}.${module}.model.result.${className}Result;
-import ${basepackage}.${subpkg}.${module}.model.entity.${className};
-import ${basepackage}.${subpkg}.${module}.model.request.RequestMapper;
 import ${basepackage}.${subpkg}.${module}.model.request.${className}CreateRequest;
 import ${basepackage}.${subpkg}.${module}.model.request.${className}RemoveRequest;
 import ${basepackage}.${subpkg}.${module}.model.request.${className}QueryListRequest;
 import ${basepackage}.${subpkg}.${module}.model.request.${className}QueryOneRequest;
 import ${basepackage}.${subpkg}.${module}.model.request.${className}ModifyRequest;
+import ${basepackage}.${subpkg}.${module}.model.param.${className}CreateParam;
+import ${basepackage}.${subpkg}.${module}.model.param.${className}ModifyParam;
 import ${basepackage}.${subpkg}.${module}.model.param.${className}QueryListParam;
 import ${basepackage}.${subpkg}.${module}.model.param.${className}QueryOneParam;
 import ${basepackage}.${subpkg}.${module}.service.${className}Service;
 
 import chok2.devwork.BaseRestController;
-import chok2.devwork.pojo.ChokDto;
+import chok2.devwork.pojo.ChokResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -57,15 +58,15 @@ public class ${className}Controller extends BaseRestController
 
 	@Operation(summary = "新增")
 	@RequestMapping(value = "/create", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public ChokDto<Object> create(@RequestBody @Validated ${className}CreateRequest request)
+	public ChokResponse<Object> create(@RequestBody @Validated ${className}CreateRequest request)
 	{
-		${className} entity = RequestMapper.INSTANCE.requestToEntity(request);
-		return service.create(entity);
+		${className}CreateParam param = ModelMapper.INSTANCE.requestToParam(request);
+		return service.create(param);
 	}
 
 	@Operation(summary = "删除")
 	@RequestMapping(value = "/remove", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public ChokDto<Object> remove(@RequestBody @Validated ${className}RemoveRequest request)
+	public ChokResponse<Object> remove(@RequestBody @Validated ${className}RemoveRequest request)
 	{
 		<#if table.pkCount gte 1>
 		<#list table.compositeIdColumns as column>
@@ -76,25 +77,25 @@ public class ${className}Controller extends BaseRestController
 
 	@Operation(summary = "修改")
 	@RequestMapping(value = "/modify", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public ChokDto<Object> modify(@RequestBody @Validated ${className}ModifyRequest request)
+	public ChokResponse<Object> modify(@RequestBody @Validated ${className}ModifyRequest request)
 	{
-		${className} entity = RequestMapper.INSTANCE.requestToEntity(request);
-		return service.modify(entity);
+		${className}ModifyParam param = ModelMapper.INSTANCE.requestToParam(request);
+		return service.modify(param);
 	}
 
 	@Operation(summary = "明细")
 	@RequestMapping(value = "/queryOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public ChokDto<${className}Result> queryOne(@RequestBody @Validated ${className}QueryOneRequest request)
+	public ChokResponse<${className}Result> queryOne(@RequestBody @Validated ${className}QueryOneRequest request)
 	{
-		${className}QueryOneParam param = RequestMapper.INSTANCE.requestToParam(request);
+		${className}QueryOneParam param = ModelMapper.INSTANCE.requestToParam(request);
 		return service.queryOne(param);
 	}
 
 	@Operation(summary = "列表")
 	@RequestMapping(value = "/queryList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public ChokDto<List<${className}Result>> queryList(@RequestBody @Validated ${className}QueryListRequest request)
+	public ChokResponse<List<${className}Result>> queryList(@RequestBody @Validated ${className}QueryListRequest request)
 	{
-		${className}QueryListParam param = RequestMapper.INSTANCE.requestToParam(request);
+		${className}QueryListParam param = ModelMapper.INSTANCE.requestToParam(request);
 		return service.queryList(param);
 	}
 }

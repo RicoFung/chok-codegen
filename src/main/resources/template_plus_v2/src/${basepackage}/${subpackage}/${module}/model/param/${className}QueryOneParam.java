@@ -7,6 +7,8 @@ package ${basepackage}.${subpkg}.${module}.model.param;
 import java.io.Serializable;
 import java.util.Arrays;
 
+import org.springframework.security.core.SpringSecurityCoreVersion;
+
 public class ${className}QueryOneParam implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -21,7 +23,7 @@ public class ${className}QueryOneParam implements Serializable
 	
 	public static class DynamicWhere implements Serializable
 	{
-		private static final long serialVersionUID = 1L;
+		private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
 		
 <#list table.columns as column>
 	    // ${column.columnAlias!}       db_column: ${column.sqlName} 
@@ -29,16 +31,6 @@ public class ${className}QueryOneParam implements Serializable
 </#list>
 		
 <#list table.columns as column>
-<#if column.isDateTimeColumn>
-		public String get${column.columnName}String() 
-		{
-			return DateUtil.format(get${column.columnName}(), "yyyy-MM-dd HH:mm:ss");
-		}
-		public void set${column.columnName}String(String value) 
-		{
-			set${column.columnName}(DateConvertUtils.parse(value, FORMAT_${column.constantName},${column.javaType}.class));
-		}
-</#if>	
 		public ${column.javaType} get${column.columnName}() 
 		{
 			return this.${column.columnNameLower};
