@@ -26,7 +26,7 @@
 	-->
 	
     <!-- 自动生成id策略 -->
-    <insert id="create" parameterType="${basepackage}.${subpkg}.${module}.model.param.${className}CreateParam"> 
+    <insert id="create" parameterType="${basepackage}.${subpkg}.${module}.model.param.CreateParam"> 
 		<#if table.pkCount gte 1>
 		<#list table.compositeIdColumns as column>
        	<selectKey keyProperty="${column.columnNameLower}" resultType="string" order="BEFORE">
@@ -70,7 +70,7 @@
 		</#if>
 	</delete>
 	
-	<update id="modify" parameterType="${basepackage}.${subpkg}.${module}.model.param.${className}ModifyParam">
+	<update id="modify" parameterType="${basepackage}.${subpkg}.${module}.model.param.ModifyParam">
 		UPDATE ${table.sqlName} T
 		<set>
         <#list table.notPkColumns as column>
@@ -172,7 +172,7 @@
 	</select>
 	
 	<!-- queryList -->
-	<select id="queryList" parameterType="${basepackage}.${subpkg}.${module}.model.param.${className}QueryListParam" resultType="list" resultMap="${classNameFirstLower}Result">
+	<select id="queryList" parameterType="${basepackage}.${subpkg}.${module}.model.param.QueryListParam" resultType="list" resultMap="${classNameFirstLower}Result">
 		<choose>
 			<!-- 翻页 -->
 			<when test="@chok2.devwork.dao.Ognl@isNotEmpty(page) and @chok2.devwork.dao.Ognl@isNotEmpty(pagesize)">
