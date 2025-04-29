@@ -12,8 +12,8 @@
     
     <!-- 定义包名，模块名 -->
     <entry key="basepackage">com.epo</entry>  
-    <entry key="subpackage">manage</entry>
-    <entry key="module">userinfo</entry>
+    <entry key="subpackage">pos</entry>
+    <entry key="module">auth</entry>
 	<!--     
     <entry key="basepackage">com</entry>  
     <entry key="subpackage">domain</entry>
@@ -36,12 +36,21 @@
     <entry key="jdbc_password">E3Uatuser345</entry>  
     <entry key="jdbc_schema">E3</entry>  
     <entry key="jdbc_catalog">E3</entry>  
-	
+    <!-- 
+	 -->
+	 
 	<!-- 
     <entry key="jdbc_username">epoerp_u</entry>  
     <entry key="jdbc_password">epoerp_u</entry>  
     <entry key="jdbc_schema">EPOERP_U</entry>  
     <entry key="jdbc_catalog">EPOERP_U</entry>  
+     -->
+     
+    <!-- 
+    <entry key="jdbc_username">epodrp_u</entry>  
+    <entry key="jdbc_password">epodrp_u</entry>  
+	<entry key="jdbc_schema">EPODRP_U</entry>  
+    <entry key="jdbc_catalog">EPODRP_U</entry>   
      -->
      
     <!-- 
@@ -69,12 +78,20 @@
   
    
     <!-- Oracle  jdbc:oracle:oci:@tnsname_devdb --> 
+    <!-- POS -->
     <entry key="jdbc_url">jdbc:oracle:thin:@10.12.204.39:1521/ZTDEV</entry>  
-    <entry key="jdbc_driver">oracle.jdbc.driver.OracleDriver</entry>  
+    <entry key="jdbc_driver">oracle.jdbc.driver.OracleDriver</entry> 
+    <!-- 
+    <entry key="jdbc_url">jdbc:oracle:thin:@ECNGZVWERP301U.mo-co.org:1521:orcl</entry>  
+    <entry key="jdbc_driver">oracle.jdbc.driver.OracleDriver</entry> 
+     -->
+    
+    <!-- MUSEUM --> 
     <!-- 
     <entry key="jdbc_url">jdbc:oracle:thin:@ECNGZVWERP301U.mo-co.org:1521:orcl</entry>  
     <entry key="jdbc_driver">oracle.jdbc.driver.OracleDriver</entry>  
      -->
+     
 <!--     <entry key="jdbc_driver">oracle.jdbc.OracleDriver</entry>   -->
     
     <!-- MySql 

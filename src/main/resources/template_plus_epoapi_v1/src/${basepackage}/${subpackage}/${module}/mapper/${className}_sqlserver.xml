@@ -1,0 +1,115 @@
+<#assign className = table.className>   
+<#assign classNameLower = table.className?uncap_first> 
+<#assign classNameFirstLower = table.classNameFirstLower>
+<#assign subpkg = subpackage?replace("/",".")>
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
+<#macro mapperEl value>${r"#{"}${value}}</#macro>
+<#macro mapperItemEl value>${r"#{item."}${value}}</#macro>
+<#macro mapperDynamicWhereEl value>${r"#{dynamicWhere."}${value}}</#macro>
+
+<mapper namespace="${basepackage}.${subpkg}.${module}.dao.${className}Dao">
+
+	<!-- 
+	****************************************************************************************************
+	* READ
+	****************************************************************************************************
+	-->
+  	
+	<sql id="dynamicColumns">
+		<choose>
+			<when test="@chok2.devwork.dao.Ognl@isNotEmpty(dynamicColumns) and @chok2.devwork.dao.Ognl@isNotNull(dynamicColumns)">
+			    <foreach collection ="dynamicColumns" item="col" index="index" separator=",">
+					<#list table.columns as column>
+					<if test="col == '${column.columnNameLower}'">T.${column.sqlName?upper_case}</if>
+					</#list>
+			    </foreach>
+			</when>
+			<otherwise>
+				<#list table.columns as column>
+				T.${column.sqlName?upper_case}<#if column_has_next>,</#if> 
+				</#list>
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<sql id="dynamicOrder">
+		<choose>
+			<when test="@chok2.devwork.dao.Ognl@isNotEmpty(dynamicOrder)">
+				ORDER BY <foreach collection="dynamicOrder" index="index" item="item" separator=",">TT.<include refid="orderParse" /> ${r'${item.sortOrder}'}</foreach>  
+			</when>
+			<otherwise>
+				<#if table.pkCount gte 1>
+				ORDER BY <#list table.compositeIdColumns as column>TT.${column.sqlName?upper_case}<#if column_has_next>, </#if> </#list>
+				</#if> 
+			</otherwise>
+		</choose>
+	</sql>
+	<sql id="orderParse">
+		<#list table.columns as column>
+		<if test="item.sortName == '${column.columnNameLower}'">${column.sqlName?upper_case}</if>
+		</#list>
+	</sql>
+	
+	<sql id="dynamicWhereEqual">
+		<where>
+	       	<#list table.columns as column>
+	       	<if test="@chok2.devwork.dao.Ognl@isNotEmpty(${column.columnNameFirstLower})"> AND T.${column.sqlName} = <@mapperDynamicWhereEl column.columnNameFirstLower/></if>
+	       	</#list>
+		</where>
+	</sql>	
+	
+	<sql id="dynamicWhere">
+		<where>
+			<#if table.pkCount gte 1>
+			<#list table.compositeIdColumns as column>
+			<if test="@chok2.devwork.dao.Ognl@isNotEmpty(${column.columnNameFirstLower}Array)"> 
+				AND T.${column.sqlName?upper_case} IN
+				<foreach collection="${column.columnNameFirstLower}Array" item="${column.columnNameFirstLower}" index="index" open="(" close=")" separator=","><@mapperEl column.columnNameLower/></foreach>
+			</if>
+			</#list>
+			</#if>  				
+	       	<#list table.notPkColumns as column>
+	       	<if test="@chok2.devwork.dao.Ognl@isNotEmpty(${column.columnNameFirstLower})"> AND T.${column.sqlName?upper_case} LIKE '%'||<@mapperDynamicWhereEl column.columnNameFirstLower/>||'%'</if>
+	       	</#list>
+		</where>
+	</sql>	
+	
+	<resultMap type="${basepackage}.${subpkg}.${module}.model.result.${className}Result" id="${classNameFirstLower}Result">
+        <#list table.columns as column>
+        <result property="${column.columnNameLower}" column="${column.sqlName?upper_case}"/>
+		</#list>
+	</resultMap>
+
+	<!-- queryList -->
+	<select id="queryList" parameterType="${basepackage}.${subpkg}.${module}.model.param.QueryListParam" resultType="list" resultMap="${classNameFirstLower}Result">
+		<choose>
+			<!-- 翻页 -->
+			<when test="@chok2.devwork.dao.Ognl@isNotEmpty(page) and @chok2.devwork.dao.Ognl@isNotEmpty(pagesize)">
+				SELECT TOP ${r'${pagesize}'} *
+				  FROM (SELECT ROW_NUMBER() OVER(<include refid="dynamicOrder" />) AS ROWNUMBER, *
+				          FROM 
+				          (
+				          	SELECT <include refid="dynamicColumns"/> 
+				          	  FROM ${table.sqlName?upper_case} T 
+				          	<include refid="dynamicWhere" />
+				          ) TT) TEMP_ROW
+				 WHERE ROWNUMBER &gt; (${r'${page}'}-1)*${r'${pagesize}'}
+			</when>
+			<!-- 非翻页 -->
+			<otherwise>
+				SELECT TT.* FROM 
+				(
+					SELECT <include refid="dynamicColumns"/> FROM ${table.sqlName?upper_case} T
+					<include refid="dynamicWhere" />
+				) TT
+				<include refid="dynamicOrder" />
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="queryCount" resultType="int">
+		SELECT COUNT(1) FROM ${table.sqlName?upper_case} T
+		<include refid="dynamicWhere" />
+	</select>
+</mapper>  
