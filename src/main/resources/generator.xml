@@ -13,7 +13,7 @@
     <!-- 定义包名，模块名 -->
     <entry key="basepackage">com.epo</entry>  
     <entry key="subpackage">pos</entry>
-    <entry key="module">auth</entry>
+    <entry key="module">business_btsinglprodu</entry>
 	<!--     
     <entry key="basepackage">com</entry>  
     <entry key="subpackage">domain</entry>
@@ -69,6 +69,7 @@
     <entry key="java_typemapping.java.sql.Timestamp">java.util.Date</entry>  
     <entry key="java_typemapping.java.sql.Date">java.util.Date</entry>  
     <entry key="java_typemapping.java.sql.Time">java.util.Date</entry>    
+    <entry key="java_typemapping.java.sql.Clob">java.lang.String</entry>  
     <entry key="java_typemapping.java.lang.Object">java.lang.String</entry>  
     <entry key="java_typemapping.java.lang.Double">java.lang.Double</entry>    
     <entry key="java_typemapping.java.lang.Float">java.lang.Double</entry>    

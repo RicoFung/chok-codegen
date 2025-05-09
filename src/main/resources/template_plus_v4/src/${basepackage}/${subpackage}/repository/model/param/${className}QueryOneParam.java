@@ -63,6 +63,10 @@ public class ${className}QueryOneParam implements Serializable
         {
             return ${column.columnNameLower};
         }
+		public void set${column.columnName}(${column.javaType} value) 
+		{
+			this.${column.columnNameLower} = value;
+		}
         </#list>
 
         @Override
