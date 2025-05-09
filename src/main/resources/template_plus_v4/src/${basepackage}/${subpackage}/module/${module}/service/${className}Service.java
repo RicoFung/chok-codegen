@@ -58,14 +58,14 @@ public class ${className}Service
 		return new ChokResponse<Object>();
 	}	
 
-	@Cacheable(key = "#param")
+	@Cacheable(key = "#p0.toString()")
 	public ChokResponse<${className}Result> queryOne(${className}QueryOneParam param) 
 	{
 		${className}Result result = dao.queryOne(param);
 		return new ChokResponse<${className}Result>(result);
 	}
 
-	@Cacheable(key = "#param")
+	@Cacheable(key = "#p0.toString()")
 	public ChokResponse<List<${className}Result>> queryList(${className}QueryListParam param) 
 	{
 		List<${className}Result> result = dao.queryList(param);

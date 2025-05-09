@@ -5,8 +5,8 @@
 package ${basepackage}.${subpkg}.${module}.model.request;
 
 import java.io.Serializable;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import org.springframework.security.core.SpringSecurityCoreVersion;
 

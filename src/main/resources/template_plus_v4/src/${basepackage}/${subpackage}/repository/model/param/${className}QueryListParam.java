@@ -96,12 +96,33 @@ public class ${className}QueryListParam implements Serializable
         <#list table.notPkColumns as column>
         private ${column.javaType} ${column.columnNameLower};
         </#list>
+		
+		<#if table.pkCount gte 1>
+		<#list table.compositeIdColumns as column>
+		private String[] ${column.columnNameLower}Array;
+		</#list>
+		</#if>	
 
         <#list table.notPkColumns as column>
         public ${column.javaType} get${column.columnName}() 
         {
             return ${column.columnNameLower};
         }
+		public void set${column.columnName}(${column.javaType} value) 
+		{
+			this.${column.columnNameLower} = value;
+		}
+        </#list>
+    	
+        <#list table.compositeIdColumns as column>
+		public String[] get${column.columnName}Array() 
+		{
+			return this.${column.columnNameLower}Array;
+		}
+		public void set${column.columnName}Array(String[] value) 
+		{
+			this.${column.columnNameLower}Array = value;
+		}
         </#list>
 
         @Override
