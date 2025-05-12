@@ -15,7 +15,7 @@ import org.springframework.security.core.SpringSecurityCoreVersion;
 
 public class ${className}QueryListParam implements Serializable 
 {
-    private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
+    private static final long serialVersionUID = 1L;
 
     private DynamicWhere dynamicWhere = new DynamicWhere(); // 固定实例化，方便链式调用
     private String[] dynamicColumns;
@@ -91,7 +91,7 @@ public class ${className}QueryListParam implements Serializable
     // 3. `DynamicWhere` 内部类，包含查询字段
     public static class DynamicWhere implements Serializable 
     {
-        private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
+        private static final long serialVersionUID = 1L;
 
         <#list table.notPkColumns as column>
         private ${column.javaType} ${column.columnNameLower};

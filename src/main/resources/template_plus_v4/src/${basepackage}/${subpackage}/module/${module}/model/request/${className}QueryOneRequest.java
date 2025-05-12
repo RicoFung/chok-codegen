@@ -2,7 +2,7 @@
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
 <#assign subpkg = subpackage?replace("/",".")>
-package ${basepackage}.${subpkg}.${module}.model.request;
+package ${basepackage}.${subpkg}.module.${module}.model.request;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -14,7 +14,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "${className}QueryOneRequest 详情入参")
 public class ${className}QueryOneRequest implements Serializable
 {
-	private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
+	private static final long serialVersionUID = 1L;
 	
 	@Schema(title = "动态列", example = "[<#list table.columns as column>\"${column.columnNameLower}\"<#if column_has_next>,</#if></#list>]")
 	private java.lang.String[] dynamicColumns;
@@ -27,7 +27,7 @@ public class ${className}QueryOneRequest implements Serializable
 	@Schema(title = "${className}QueryListRequest.DynamicWhere", name="DynamicWhere(${className}QueryOneRequest)", description="DynamicWhere(${className}QueryOneRequest)")
 	public static class DynamicWhere implements Serializable
 	{
-		private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
+		private static final long serialVersionUID = 1L;
 		
 <#list table.columns as column>
 	    // ${column.columnAlias!}       db_column: ${column.sqlName} 

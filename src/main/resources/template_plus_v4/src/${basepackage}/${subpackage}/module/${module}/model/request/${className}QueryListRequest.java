@@ -4,7 +4,7 @@
 <#assign classNameLowerCase = table.classNameLowerCase>  
 <#assign classNameFirstLower = table.classNameFirstLower>  
 <#assign subpkg = subpackage?replace("/",".")>
-package ${basepackage}.${subpkg}.${module}.model.request;
+package ${basepackage}.${subpkg}.module.${module}.model.request;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -18,7 +18,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "${className}QueryListRequest 列表入参")
 public class ${className}QueryListRequest implements Serializable
 {
-	private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
+	private static final long serialVersionUID = 1L;
 
 	// ********************************************************************************************
 	// 1.默认参数
@@ -44,7 +44,7 @@ public class ${className}QueryListRequest implements Serializable
 	@Schema(title = "${className}QueryListRequest.DynamicWhere", name="DynamicWhere(${className}QueryListRequest)", description="DynamicWhere(${className}QueryListRequest)")
 	public static class DynamicWhere implements Serializable
 	{
-		private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
+		private static final long serialVersionUID = 1L;
 		
 <#list table.notPkColumns as column>
 	    // ${column.columnAlias!}       db_column: ${column.sqlName} 

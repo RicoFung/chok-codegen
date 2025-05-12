@@ -2,7 +2,7 @@
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
 <#assign subpkg = subpackage?replace("/",".")>
-package ${basepackage}.${subpkg}.${module}.model.request;
+package ${basepackage}.${subpkg}.module.${module}.model.request;
 
 import java.io.Serializable;
 import jakarta.validation.constraints.NotBlank;
@@ -15,7 +15,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "${className}CreateRequest 新增入参")
 public class ${className}CreateRequest implements Serializable
 {
-	private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
+	private static final long serialVersionUID = 1L;
 
 <#list table.notPkColumns as column>
     // ${column.columnAlias!}       db_column: ${column.sqlName} 

@@ -12,5 +12,5 @@ import ${basepackage}.${subpkg}.repository.model.entity.${className};
  */
 public class ${className}CreateParam extends ${className}
 {
-	private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
+	private static final long serialVersionUID = 1L;
 }

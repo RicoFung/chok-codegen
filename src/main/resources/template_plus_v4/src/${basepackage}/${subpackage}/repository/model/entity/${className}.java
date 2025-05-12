@@ -12,7 +12,7 @@ import org.springframework.security.core.SpringSecurityCoreVersion;
  */
 public class ${className} implements Serializable
 {
-	private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
+	private static final long serialVersionUID = 1L;
 
 <#if table.pkCount gte 1>
 <#list table.compositeIdColumns as column>

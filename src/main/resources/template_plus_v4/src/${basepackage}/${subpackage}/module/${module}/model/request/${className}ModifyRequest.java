@@ -2,7 +2,7 @@
 <#assign className = table.className>   
 <#assign classNameLower = className?uncap_first> 
 <#assign subpkg = subpackage?replace("/",".")>
-package ${basepackage}.${subpkg}.${module}.model.request;
+package ${basepackage}.${subpkg}.module.${module}.model.request;
 
 import java.io.Serializable;
 
@@ -16,7 +16,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(description = "${className}ModifyRequest 修改入参")
 public class ${className}ModifyRequest implements Serializable
 {
-	private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
+	private static final long serialVersionUID = 1L;
 
 <#if table.pkCount gte 1>
 <#list table.compositeIdColumns as column>
