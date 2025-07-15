@@ -11,14 +11,14 @@
     <entry key="outRoot">target</entry>
     
     <!-- 定义包名，模块名 -->
+	<!--     
+    <entry key="basepackage">com.epo</entry>  
+    <entry key="subpackage">admin</entry>
+    <entry key="module">tbroles0a</entry>
+     -->
     <entry key="basepackage">com.epo</entry>  
     <entry key="subpackage">pos</entry>
-    <entry key="module">business_btsinglprodu</entry>
-	<!--     
-    <entry key="basepackage">com</entry>  
-    <entry key="subpackage">domain</entry>
-    <entry key="module">tbdemo</entry>
-     -->
+    <entry key="module">manage_userinfo</entry>
     
     <!-- 标签 
     <entry key="apiGroup">shopappexpire</entry>
@@ -38,6 +38,13 @@
     <entry key="jdbc_catalog">E3</entry>  
     <!-- 
 	 -->
+	 
+	<!-- 
+    <entry key="jdbc_username">epomrp</entry>  
+    <entry key="jdbc_password">epomrp</entry>  
+    <entry key="jdbc_schema">EPOMRP</entry>  
+    <entry key="jdbc_catalog">EPOMRP</entry>  
+     -->
 	 
 	<!-- 
     <entry key="jdbc_username">epoerp_u</entry>  
@@ -89,7 +96,7 @@
     
     <!-- MUSEUM --> 
     <!-- 
-    <entry key="jdbc_url">jdbc:oracle:thin:@ECNGZVWERP301U.mo-co.org:1521:orcl</entry>  
+    <entry key="jdbc_url">jdbc:oracle:thin:@10.12.204.152:1521:orcl</entry>  
     <entry key="jdbc_driver">oracle.jdbc.driver.OracleDriver</entry>  
      -->
      

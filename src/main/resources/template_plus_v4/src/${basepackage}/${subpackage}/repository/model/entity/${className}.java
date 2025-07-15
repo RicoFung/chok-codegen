@@ -6,7 +6,6 @@ package ${basepackage}.${subpkg}.repository.model.entity;
 
 import java.io.Serializable;
 
-import org.springframework.security.core.SpringSecurityCoreVersion;
 /**
 <#include "/java_description.include">
  */

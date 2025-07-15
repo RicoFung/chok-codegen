@@ -32,11 +32,11 @@ import ${basepackage}.${subpkg}.repository.model.result.${className}Result;
 import ${basepackage}.${subpkg}.module.${module}.service.${className}Service;
 
 import chok2.devwork.BaseRestController;
-import chok2.devwork.pojo.ChokResponse;
+import cn.dev33.satoken.util.SaResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Tag(name = "${apiGroup}-${className}")
+@Tag(name = "${apiGroup}${className}")
 @RestController(value = "${apiGroup}${className}Controller")
 @RequestMapping("${apiGroupPath}/${classNameLowerCase}")
 public class ${className}Controller extends BaseRestController
@@ -58,7 +58,7 @@ public class ${className}Controller extends BaseRestController
 
 	@Operation(summary = "新增")
 	@RequestMapping(value = "/create", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public ChokResponse<Object> create(@RequestBody @Validated ${className}CreateRequest request)
+	public SaResult create(@RequestBody @Validated ${className}CreateRequest request)
 	{
 		${className}CreateParam param = ModelMapper.INSTANCE.map(request);
 		return service.create(param);
@@ -66,7 +66,7 @@ public class ${className}Controller extends BaseRestController
 
 	@Operation(summary = "删除")
 	@RequestMapping(value = "/remove", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public ChokResponse<Object> remove(@RequestBody @Validated ${className}RemoveRequest request)
+	public SaResult remove(@RequestBody @Validated ${className}RemoveRequest request)
 	{
 		<#if table.pkCount gte 1>
 		<#list table.compositeIdColumns as column>
@@ -77,7 +77,7 @@ public class ${className}Controller extends BaseRestController
 
 	@Operation(summary = "修改")
 	@RequestMapping(value = "/modify", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public ChokResponse<Object> modify(@RequestBody @Validated ${className}ModifyRequest request)
+	public SaResult modify(@RequestBody @Validated ${className}ModifyRequest request)
 	{
 		${className}ModifyParam param = ModelMapper.INSTANCE.map(request);
 		return service.modify(param);
@@ -85,7 +85,7 @@ public class ${className}Controller extends BaseRestController
 
 	@Operation(summary = "明细")
 	@RequestMapping(value = "/queryOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public ChokResponse<${className}Result> queryOne(@RequestBody @Validated ${className}QueryOneRequest request)
+	public SaResult queryOne(@RequestBody @Validated ${className}QueryOneRequest request)
 	{
 		${className}QueryOneParam param = ModelMapper.INSTANCE.map(request);
 		return service.queryOne(param);
@@ -93,7 +93,7 @@ public class ${className}Controller extends BaseRestController
 
 	@Operation(summary = "列表")
 	@RequestMapping(value = "/queryList", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public ChokResponse<List<${className}Result>> queryList(@RequestBody @Validated ${className}QueryListRequest request)
+	public SaResult queryList(@RequestBody @Validated ${className}QueryListRequest request)
 	{
 		${className}QueryListParam param = ModelMapper.INSTANCE.map(request);
 		return service.queryList(param);

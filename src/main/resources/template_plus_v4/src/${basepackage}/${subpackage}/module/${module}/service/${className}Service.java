@@ -17,6 +17,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
+import cn.dev33.satoken.util.SaResult;
 import ${basepackage}.${subpkg}.repository.dao.${className}Dao;
 import ${basepackage}.${subpkg}.repository.model.result.${className}Result;
 import ${basepackage}.${subpkg}.repository.model.entity.${className};
@@ -25,7 +26,6 @@ import ${basepackage}.${subpkg}.repository.model.param.${className}ModifyParam;
 import ${basepackage}.${subpkg}.repository.model.param.${className}QueryListParam;
 import ${basepackage}.${subpkg}.repository.model.param.${className}QueryOneParam;
 
-import chok2.devwork.pojo.ChokResponse;
 
 @CacheConfig(cacheNames = {"CACHE_${className}"})
 @Service(value = "${apiGroup}${className}Service")
@@ -38,37 +38,37 @@ public class ${className}Service
 	private ${className}Dao dao;
 
 	@Caching(evict = { @CacheEvict(allEntries = true) })
-	public ChokResponse<Object> create(${className}CreateParam entity)
+	public SaResult create(${className}CreateParam entity)
 	{
 		dao.create(entity);
-		return new ChokResponse<Object>();
+		return SaResult.ok();
 	}
 
 	@Caching(evict = { @CacheEvict(allEntries = true) })
-	public ChokResponse<Object> remove(String[] ids)
+	public SaResult remove(String[] ids)
 	{
 		dao.remove(ids);
-		return new ChokResponse<Object>();
+		return SaResult.ok();
 	}
 
 	@Caching(evict = { @CacheEvict(value = {"CACHE_${className}"}, allEntries = true) })
-	public ChokResponse<Object> modify(${className}ModifyParam entity)
+	public SaResult modify(${className}ModifyParam entity)
 	{
 		dao.modify(entity);
-		return new ChokResponse<Object>();
+		return SaResult.ok();
 	}	
 
 	@Cacheable(key = "#p0.toString()")
-	public ChokResponse<${className}Result> queryOne(${className}QueryOneParam param) 
+	public SaResult queryOne(${className}QueryOneParam param) 
 	{
 		${className}Result result = dao.queryOne(param);
-		return new ChokResponse<${className}Result>(result);
+		return SaResult.data(result);
 	}
 
 	@Cacheable(key = "#p0.toString()")
-	public ChokResponse<List<${className}Result>> queryList(${className}QueryListParam param) 
+	public SaResult queryList(${className}QueryListParam param) 
 	{
 		List<${className}Result> result = dao.queryList(param);
-		return new ChokResponse<List<${className}Result>>(result);
+		return SaResult.data(result);
 	}
 }
