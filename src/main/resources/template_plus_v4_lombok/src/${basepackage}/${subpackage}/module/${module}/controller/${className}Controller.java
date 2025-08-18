@@ -27,7 +27,6 @@ import ${basepackage}.${subpkg}.repository.model.param.${className}CreateParam;
 import ${basepackage}.${subpkg}.repository.model.param.${className}ModifyParam;
 import ${basepackage}.${subpkg}.repository.model.param.${className}QueryListParam;
 import ${basepackage}.${subpkg}.repository.model.param.${className}QueryOneParam;
-import ${basepackage}.${subpkg}.repository.model.result.${className}Result;
 import ${basepackage}.${subpkg}.module.${module}.service.${className}Service;
 
 import chok2.devwork.BaseRestController;

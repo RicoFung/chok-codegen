@@ -7,7 +7,7 @@ package ${basepackage}.${subpkg}.module.${module}.model.request;
 import java.io.Serializable;
 import java.util.Arrays;
 
-import org.springframework.security.core.SpringSecurityCoreVersion;
+//import org.springframework.security.core.SpringSecurityCoreVersion;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

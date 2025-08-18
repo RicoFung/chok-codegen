@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.security.core.SpringSecurityCoreVersion;
+//import org.springframework.security.core.SpringSecurityCoreVersion;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
