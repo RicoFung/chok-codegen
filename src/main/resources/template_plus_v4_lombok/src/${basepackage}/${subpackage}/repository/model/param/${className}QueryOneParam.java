@@ -5,6 +5,7 @@
 
 package ${basepackage}.${subpkg}.repository.model.param;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
 
