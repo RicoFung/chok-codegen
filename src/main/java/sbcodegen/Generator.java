@@ -12,18 +12,18 @@ public class Generator
 //		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_v2";
 //		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_plus_v0";
 //		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_plus_v1";
-//		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_plus_v2";
+		// String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_plus_v2";
 //		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_plus_v3";
 //		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_plus_v4";
-		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_plus_v4_lombok";
+//		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_plus_v4_lombok";
 //		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_plus_epoapi_v1";
+		String templatePath = "C:\\Dev\\projects\\jee\\chok-codegen\\src\\main\\resources\\template_plus_epoapi_v2";
 		
 		GeneratorFacade g = new GeneratorFacade();
 		g.getGenerator().addTemplateRootDir(templatePath);
 		
 		// 通过数据库表生成文件
-//		g.generateByTable("tb_po_in_apply_dt_0a");
-		g.generateByTable("manage_userinfo");
+		g.generateByTable("stock_allotapplybill");
 
 	}
 }

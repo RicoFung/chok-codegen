@@ -1,0 +1,52 @@
+<#assign className = table.className>   
+<#assign classNameLower = table.className?uncap_first> 
+<#assign classNameFirstLower = table.classNameFirstLower>
+<#assign subpkg = subpackage?replace("/",".")>
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
+<#macro mapperEl value>${r"#{"}${value}}</#macro>
+
+<mapper namespace="${basepackage}.${subpkg}.${module}.dao.${className}Dao">
+	<!-- 开启基于redis的二级缓存 -->
+	<!-- 
+    <cache type="chok.redis.mybatis.RedisCache">
+    	<property name="eviction" value="LRU" />
+        <property name="flushInterval" value="6000000" />
+        <property name="size" value="1024" />
+        <property name="readOnly" value="false" />
+    </cache>
+     -->
+
+	<!-- 
+	****************************************************************************************************
+	* WRITE
+	****************************************************************************************************
+	-->
+	
+    <!-- 自动生成id策略 -->
+    <insert id="create" parameterType="${basepackage}.${subpkg}.${module}.model.entity.${className}"> 
+		<#if table.pkCount gte 1>
+		<#list table.compositeIdColumns as column>
+       	<selectKey keyProperty="${column.columnNameLower}" resultType="string" order="BEFORE">
+	         SELECT SEQ_${table.sqlName}.NEXTVAL FROM DUAL
+		</selectKey>
+		</#list>
+		</#if>
+       	INSERT INTO ${table.sqlName} 
+       	(<#list table.columns as column> ${column.sqlName}<#if column_has_next>,</#if></#list>) 
+       	VALUES
+       	(<#list table.columns as column> <@mapperEl column.columnNameFirstLower/><#if column_has_next>,</#if></#list>)
+    </insert>  
+	
+	<update id="modify" parameterType="${basepackage}.${subpkg}.${module}.model.entity.${className}">
+		UPDATE ${table.sqlName} T
+		<set>
+        <#list table.notPkColumns as column>
+        <if test="@chok2.devwork.dao.Ognl@isNotNull(${column.columnNameFirstLower})"> T.${column.sqlName} = <@mapperEl column.columnNameFirstLower/><#if column_has_next>,</#if></if>
+        </#list>
+        </set>
+	     <#if table.pkCount gte 1>
+         WHERE <#list table.compositeIdColumns as column>T.${column.sqlName} = <@mapperEl column.columnNameLower/> <#if column_has_next> and </#if> </#list>
+         </#if>        
+	</update>
+</mapper>  

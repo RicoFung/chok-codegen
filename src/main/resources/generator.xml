@@ -17,9 +17,9 @@
     <entry key="module">tbroles0a</entry>
      -->
     <entry key="basepackage">com.epo</entry>  
-    <entry key="subpackage">pos</entry>
-    <entry key="module">manage_userinfo</entry>
-    
+    <entry key="subpackage">stock</entry>
+    <entry key="module">allotapplybill</entry> 
+     
     <!-- 标签 
     <entry key="apiGroup">shopappexpire</entry>
     <entry key="apiGroupPath">/api/shopappexpire</entry>
@@ -82,6 +82,7 @@
     <entry key="java_typemapping.java.lang.Float">java.lang.Double</entry>    
     <entry key="java_typemapping.java.lang.Byte">java.lang.Integer</entry>  
     <entry key="java_typemapping.java.lang.Short">java.lang.Integer</entry>  
+    <entry key="java_typemapping.java.lang.Long">java.lang.Long</entry>  
     <entry key="java_typemapping.java.math.BigDecimal">java.lang.Long</entry>  
   
    

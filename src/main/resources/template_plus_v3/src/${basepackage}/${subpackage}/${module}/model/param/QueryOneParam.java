@@ -9,8 +9,6 @@ import java.io.Serializable;
 import java.util.Arrays;
 import org.springframework.security.core.SpringSecurityCoreVersion;
 
-import QueryListParam.DynamicWhere;
-
 public class QueryOneParam implements Serializable 
 {
     private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
@@ -33,7 +31,7 @@ public class QueryOneParam implements Serializable
 		return dynamicWhere;
 	}
 
-	public QueryListParam setDynamicWhere(DynamicWhere dynamicWhere)
+	public QueryOneParam setDynamicWhere(DynamicWhere dynamicWhere)
 	{
 		this.dynamicWhere = dynamicWhere;
         return this;
@@ -44,7 +42,7 @@ public class QueryOneParam implements Serializable
 		return dynamicColumns;
 	}
 	
-	public QueryListParam setDynamicColumns(String[] dynamicColumns)
+	public QueryOneParam setDynamicColumns(String[] dynamicColumns)
 	{
 		this.dynamicColumns = dynamicColumns;
         return this;
