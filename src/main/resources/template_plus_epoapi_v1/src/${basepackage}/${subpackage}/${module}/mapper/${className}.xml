@@ -6,7 +6,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
 <#macro mapperEl value>${r"#{"}${value}}</#macro>
 <#macro mapperItemEl value>${r"#{item."}${value}}</#macro>
-<#macro mapperDynamicWhereEl value>${r"#{dynamicWhere."}${value}}</#macro>
+<#macro mapperDynamicWhereEl value>${r"#{"}${value}}</#macro>
 
 <mapper namespace="${basepackage}.${subpkg}.${module}.dao.${className}Dao">
 
@@ -17,35 +17,12 @@
 	-->
   	
 	<sql id="dynamicColumns">
-		<choose>
-			<when test="@chok2.devwork.dao.Ognl@isNotEmpty(dynamicColumns) and @chok2.devwork.dao.Ognl@isNotNull(dynamicColumns)">
-			    <foreach collection ="dynamicColumns" item="col" index="index" separator=",">
-					<#list table.columns as column>
-					<if test="col == '${column.columnNameLower}'">T.${column.sqlName}</if>
-					</#list>
-			    </foreach>
-			</when>
-			<otherwise>
-				<#list table.columns as column>
-				T.${column.sqlName}<#if column_has_next>,</#if> 
-				</#list>
-			</otherwise>
-		</choose>
+		<#list table.columns as column>
+		T.${column.sqlName}<#if column_has_next>,</#if> 
+		</#list>
 	</sql>
 	
 	<sql id="dynamicOrder">
-		<choose>
-			<when test="@chok2.devwork.dao.Ognl@isNotEmpty(dynamicOrder)">
-				ORDER BY <foreach collection="dynamicOrder" index="index" item="item" separator=",">TT.<include refid="orderParse" /> ${r'${item.sortOrder}'}</foreach>  
-			</when>
-			<otherwise>
-			</otherwise>
-		</choose>
-	</sql>
-	<sql id="orderParse">
-		<#list table.columns as column>
-		<if test="item.sortName == '${column.columnNameLower}'">${column.sqlName}</if>
-		</#list>
 	</sql>
 	
 	<sql id="dynamicWhereEqual">
